@@ -12,7 +12,7 @@
 - 使用字符级 TF-IDF、文本切片、余弦相似度和中英文术语扩展完成 Top-K 检索。
 - 实现“检索片段 -> 抽取式草稿 -> 大模型生成”的问答流程，并保存 JSON 对话日志。
 - 从公众号文章语料构建风格画像，完成系统提示词、自动化多轮测试和 SFT 风格数据准备。
-- 跑通 Qwen3-8B 的远程单卡 bf16 LoRA 训练、adapter 加载与人工纠偏续训流程。
+- 跑通 Qwen3-8B 的 bf16 LoRA 训练、adapter 加载与人工纠偏续训流程。
 
 ### 2. 基于 LoRA 的 Mindcraft 游戏命令智能体
 
@@ -21,6 +21,7 @@
 - 在保留评测集上取得严格命令匹配 `19/20 = 95.0%`。
 - 实现命令白名单和参数校验，未知模型输出不会直接执行；仅允许已验证的游戏命令与普通问候语。
 - 构建远程 HTTP 推理网关、Windows SSH 隧道和 Mindcraft Node.js 适配器，打通“玩家聊天 -> LoRA 推理 -> 安全校验 -> 游戏动作”链路。
+- 使用 vLLM 挂载 `checkpoint-45` LoRA 适配器，提供 OpenAI 兼容推理接口，并保留独立白名单网关作为游戏动作的安全边界。
 - 已在真实 Minecraft 局域网中验证跟随、停止、查询背包、查询附近方块、采集原木、合成木板、靠近玩家、搜索树木和问候等行为。
 
 ## 目录说明
@@ -32,11 +33,7 @@
                          Mindcraft 上游项目快照及本项目的适配改动
 data/                    本地原始学习语料（默认不上传）
 简历.txt                 根据项目成果整理的简历项目描述（默认不上传）
-multi-GPU training project/
-                         独立 GitHub 项目，本仓库不重复嵌入
 ```
-
-独立的多 GPU 训练实验项目请访问：[multi-GPU-training-project](https://github.com/zmjjkkkkk/multi-GPU-training-project)。
 
 建议从以下文档阅读主线：
 
@@ -53,7 +50,7 @@ multi-GPU training project/
 
 `学习计划/Day 11 Mindcraft训练项目启动/mindcraft-develop/LICENSE`
 
-我在此基础上完成的工作主要包括：行为基线记录、SFT 数据构造与校验、Qwen3-4B LoRA 训练与评测、命令白名单、Python 推理网关、SSH 隧道接入，以及 `src/models/mindcraft_lora.js` 适配器和对应 profile。
+我在此基础上完成的工作主要包括：行为基线记录、SFT 数据构造与校验、Qwen3-4B LoRA 训练与评测、命令白名单、Python/vLLM 推理网关、SSH 隧道接入，以及 `src/models/mindcraft_lora.js` 适配器和对应 profile。
 
 本仓库不声称 Mindcraft 框架、Minecraft bot 框架或其上游功能由本人从零实现。若基于本仓库继续分发或修改 Mindcraft 相关代码，请继续遵守其 MIT License，并保留原始版权声明。
 
@@ -70,4 +67,6 @@ multi-GPU training project/
 
 ## 当前状态
 
-Day 1-17 已完成归档，Day 18 正在进行 vLLM 推理服务学习。后续将继续迭代数据、评测集和游戏任务覆盖范围。
+Day 1-18 已完成归档。Day 18 已在双 RTX 5090 远程环境完成 vLLM `0.25.1` 安装、Qwen3-4B 与 `checkpoint-45` LoRA 挂载、`/v1/models` 验证、安全网关和 SSH 隧道联通，并完成真实 Minecraft 局域网复测。
+
+下一阶段将扩大 SFT 样本与独立评测集，覆盖更多自然语言表达和边界案例；随后重新微调、对比离线严格匹配结果与真实游戏执行表现。

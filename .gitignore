@@ -11,9 +11,6 @@ data/
 简历.txt
 *.pdf
 
-# Separate repository; linked from the root README instead of nested here
-multi-GPU training project/
-
 # Secrets and machine-specific configuration
 .env
 .env.*

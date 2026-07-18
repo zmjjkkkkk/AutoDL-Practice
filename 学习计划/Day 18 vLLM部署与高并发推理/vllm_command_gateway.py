@@ -1,23 +1,21 @@
-"""Expose Day 16 command validation while delegating generation to a local vLLM server."""
+"""Serve guarded Mindcraft commands while delegating generation to local vLLM."""
 
 import argparse
 import json
 import os
-import sys
 import urllib.error
 import urllib.request
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
-
-
-PROJECT_DIR = Path(__file__).resolve().parent
-DAY16_DIR = PROJECT_DIR.parent / "Day 16 LoRA推理与Mindcraft安全接入"
-if str(DAY16_DIR) not in sys.path:
-    sys.path.append(str(DAY16_DIR))
-
 from command_guard import validate_model_output
-from infer_mindcraft_command import SYSTEM_PROMPT
+
+
+SYSTEM_PROMPT = (
+    "You are a Minecraft agent running in Mindcraft. "
+    "The current player's in-game name is robot. "
+    "For a pure greeting, reply briefly in natural language. "
+    "For a requested action, output exactly one valid Mindcraft command and no explanation."
+)
 
 
 MAX_REQUEST_BYTES = 16_384
