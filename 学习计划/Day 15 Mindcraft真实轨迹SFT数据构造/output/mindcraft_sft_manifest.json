@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "source_baseline": "../Day 13 Mindcraft行为基线测试/output/latest_behavior_baseline.json",
+  "split_seed": 20260715,
+  "eval_per_intent": 2,
+  "train_examples": 80,
+  "eval_examples": 20,
+  "intent_counts": {
+    "greeting": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "Hello! What can I help with?",
+      "label_status": "verified_real_behavior"
+    },
+    "come_to_player": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "!goToPlayer(\"robot\", 2)",
+      "label_status": "verified_real_behavior"
+    },
+    "follow_player": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "!followPlayer(\"robot\", 3)",
+      "label_status": "verified_real_behavior"
+    },
+    "stop_action": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "!stop",
+      "label_status": "verified_real_behavior"
+    },
+    "nearby_blocks": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "!nearbyBlocks",
+      "label_status": "verified_real_behavior"
+    },
+    "collect_some_wood": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "!collectBlocks(\"oak_log\", 4)",
+      "label_status": "policy_specified_from_real_behavior"
+    },
+    "collect_oak_logs": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "!collectBlocks(\"oak_log\", 4)",
+      "label_status": "verified_real_behavior"
+    },
+    "craft_planks": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "!craftRecipe(\"oak_planks\", 1)",
+      "label_status": "verified_real_behavior"
+    },
+    "check_inventory": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "!inventory",
+      "label_status": "verified_real_trajectory"
+    },
+    "recover_find_tree": {
+      "train": 8,
+      "eval": 2,
+      "assistant": "!searchForBlock(\"oak_log\", 32)",
+      "label_status": "verified_real_trajectory"
+    }
+  },
+  "train_command_counts": {
+    "!followPlayer(\"robot\", 3)": 8,
+    "!searchForBlock(\"oak_log\", 32)": 8,
+    "!goToPlayer(\"robot\", 2)": 8,
+    "!craftRecipe(\"oak_planks\", 1)": 8,
+    "Hello! What can I help with?": 8,
+    "!collectBlocks(\"oak_log\", 4)": 16,
+    "!inventory": 8,
+    "!nearbyBlocks": 8,
+    "!stop": 8
+  },
+  "eval_command_counts": {
+    "!stop": 2,
+    "!collectBlocks(\"oak_log\", 4)": 4,
+    "Hello! What can I help with?": 2,
+    "!craftRecipe(\"oak_planks\", 1)": 2,
+    "!inventory": 2,
+    "!followPlayer(\"robot\", 3)": 2,
+    "!searchForBlock(\"oak_log\", 32)": 2,
+    "!goToPlayer(\"robot\", 2)": 2,
+    "!nearbyBlocks": 2
+  }
+}

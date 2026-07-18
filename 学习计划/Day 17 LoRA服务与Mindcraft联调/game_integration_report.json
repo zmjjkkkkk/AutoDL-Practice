@@ -1,0 +1,57 @@
+{
+  "date": "2026-07-17",
+  "status": "passed",
+  "architecture": "player chat -> Mindcraft adapter -> SSH tunnel -> remote LoRA gateway -> command allowlist -> Mindcraft execution",
+  "verified_responses": [
+    {
+      "user": "show your inventory",
+      "output": "!inventory",
+      "result": "executed once and returned inventory information"
+    },
+    {
+      "user": "what blocks are nearby",
+      "output": "!nearbyBlocks",
+      "result": "executed and displayed the dynamic block result"
+    },
+    {
+      "user": "please follow me",
+      "output": "!followPlayer(\"robot\", 3)",
+      "result": "bot followed the player"
+    },
+    {
+      "user": "stop",
+      "output": "!stop",
+      "result": "bot stopped the active action"
+    },
+    {
+      "user": "go chop four oak logs",
+      "output": "!collectBlocks(\"oak_log\", 4)",
+      "result": "resource collection completed"
+    },
+    {
+      "user": "make wooden planks",
+      "output": "!craftRecipe(\"oak_planks\", 1)",
+      "result": "crafting completed"
+    },
+    {
+      "user": "come closer",
+      "output": "!goToPlayer(\"robot\", 2)",
+      "result": "bot moved to the player"
+    },
+    {
+      "user": "search for an oak tree again",
+      "output": "!searchForBlock(\"oak_log\", 32)",
+      "result": "block search started"
+    },
+    {
+      "user": "hello there",
+      "output": "Hello! What can I help with?",
+      "result": "approved natural-language greeting returned"
+    }
+  ],
+  "safety": {
+    "allowlist": "Only the verified command strings and approved greeting are executable or returned.",
+    "unknown_command_example": "!hello is blocked and never reaches Mindcraft.",
+    "repeat_prevention": "Only a final new player message triggers LoRA inference; command results do not retrigger the same request."
+  }
+}

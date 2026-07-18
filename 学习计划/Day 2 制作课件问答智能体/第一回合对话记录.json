@@ -1,0 +1,109 @@
+{
+  "created_at": "2026-06-22T22:22:05",
+  "raw_dir": "data/raw",
+  "question_count": 3,
+  "history": [
+    {
+      "question": "什么是数学归纳法？",
+      "expanded_question": "什么是数学归纳法？ mathematical induction induction",
+      "status": "retrieved",
+      "top_score": 0.6710536041017041,
+      "extractive_answer": "- [LN4.1 - Mathematical induction.pdf 第1页] Mathematical Induction I [LN4.1 - Mathematical induction.pdf 第2页] This Lecture Last time we discussed different proof techniques.（来源：LN4.1 - Mathematical induction.pdf）\n- re • The idea of mathematical induction • Basic induction proofs (e.g.（来源：LN4.1 - Mathematical induction.pdf）\n- [LN4.2 - Mathematical induction.pdf 第1页] Mathematical Induction II 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 1 2 3 4 5 6 7 8 9 10 11 12 13 15 14 [LN4.2 - Mathematical induction.pdf 第2页] This Lecture We will continue our discussions on mathematical induction.（来源：LN4.2 - Mathematical induction.pdf）\n- by induction [LN4.1 - Mathematical induction.pdf 第10页] Proving a Property Base Case (n = 1): Induction Step: Assume P(i) for some i ≥（来源：LN4.1 - Mathematical induction.pdf）\n- This lecture’s plan: • The idea of mathematical induction • Basic induction proofs (e.g.（来源：LN4.1 - Mathematical induction.pdf）",
+      "llm_answer": "\n\n1. **简洁答案**  \n数学归纳法是一种用于证明与自然数相关的数学命题的严谨方法。它包含两个核心步骤：  \n- **基础情况（Base case）**：验证命题在最小自然数（如n=1）时成立。  \n- **归纳步骤（Induction step）**：假设命题在n=k时成立（归纳假设），并证明其在n=k+1时也成立。  \n通过这两个步骤，可以推导出命题对所有自然数成立。  \n\n2. **关键依据**  \n- 数学归纳法的基本思想和步骤在 **LN4.1 - Mathematical induction.pdf** 中明确提到（第2页、第9页、第10页）。  \n- 课件指出其用于证明等式、不等式、性质等（如第9页的“Proving an Equality”和第10页的“Proving a Property”）。  \n- **LN4.2 - Mathematical induction.pdf** 补充了数学归纳法的变体（如强归纳法），但核心定义仍基于LN4.1的内容。  \n\n3. **资料不足说明**  \n当前资料未提供数学归纳法的完整原理（如基于自然数良序性）或具体例子（如证明1+2+…+n=n(n+1)/2）。若需进一步理解，建议补充以下内容：  \n- 数学归纳法的数学原理（如良序原理的关联）。  \n- 典型的归纳证明案例（如等式、不等式的具体示例）。  \n- 错误证明的“悖论”分析（课件提到但未展开）。",
+      "llm_meta": {
+        "ok": true,
+        "content": "\n\n1. **简洁答案**  \n数学归纳法是一种用于证明与自然数相关的数学命题的严谨方法。它包含两个核心步骤：  \n- **基础情况（Base case）**：验证命题在最小自然数（如n=1）时成立。  \n- **归纳步骤（Induction step）**：假设命题在n=k时成立（归纳假设），并证明其在n=k+1时也成立。  \n通过这两个步骤，可以推导出命题对所有自然数成立。  \n\n2. **关键依据**  \n- 数学归纳法的基本思想和步骤在 **LN4.1 - Mathematical induction.pdf** 中明确提到（第2页、第9页、第10页）。  \n- 课件指出其用于证明等式、不等式、性质等（如第9页的“Proving an Equality”和第10页的“Proving a Property”）。  \n- **LN4.2 - Mathematical induction.pdf** 补充了数学归纳法的变体（如强归纳法），但核心定义仍基于LN4.1的内容。  \n\n3. **资料不足说明**  \n当前资料未提供数学归纳法的完整原理（如基于自然数良序性）或具体例子（如证明1+2+…+n=n(n+1)/2）。若需进一步理解，建议补充以下内容：  \n- 数学归纳法的数学原理（如良序原理的关联）。  \n- 典型的归纳证明案例（如等式、不等式的具体示例）。  \n- 错误证明的“悖论”分析（课件提到但未展开）。",
+        "model": "Qwen/Qwen3-32B",
+        "base_url": "https://api.siliconflow.cn/v1/chat/completions"
+      },
+      "results": [
+        {
+          "rank": 1,
+          "source": "LN4.1 - Mathematical induction.pdf",
+          "score": 0.6710536041017041,
+          "text": "[LN4.1 - Mathematical induction.pdf 第1页]\nMathematical Induction I\n\n\n[LN4.1 - Mathematical induction.pdf 第2页]\nThis Lecture\nLast time we discussed different proof techniques.\nThis time we will focus on probably the most important one\n– mathematical induction.\nThis lecture’s plan:\n• The idea of mathematical induction\n• Basic induction proofs (e.g. equality, inequality, property, etc.)\n• Inductive constructions\n• A “paradox” (an incorrect proof)\n\n[LN4.1 - Mathematical induction.pdf 第3页]\nProving For-"
+        },
+        {
+          "rank": 2,
+          "source": "LN4.2 - Mathematical induction.pdf",
+          "score": 0.5617375195112323,
+          "text": "[LN4.2 - Mathematical induction.pdf 第1页]\nMathematical Induction II\n1 2 3 4\n5 6 7 8\n9 10 11 12\n13 14 15\n1 2 3 4\n5 6 7 8\n9 10 11 12\n13 15 14\n\n[LN4.2 - Mathematical induction.pdf 第2页]\nThis Lecture\nWe will continue our discussions on mathematical induction.\nThe new elements in this lecture are some variations of induction:\n• Strong Induction\n• Well Ordering Principle\n• Invariant Method\n\n[LN4.2 - Mathematical induction.pdf 第3页]\n• Start: a stack of boxes\n• Move: split any stack into two stacks of size"
+        },
+        {
+          "rank": 3,
+          "source": "LN4.1 - Mathematical induction.pdf",
+          "score": 0.551405315999987,
+          "text": "re\n• The idea of mathematical induction\n• Basic induction proofs (e.g. equality, property, inequality, etc)\n• Inductive constructions\n• A “paradox”\n\n[LN4.1 - Mathematical induction.pdf 第9页]\nProving an Equality\nLet P(n) be the induction hypothesis that the statement is true for n.\nBase case: P(1) is true\nInduction step: assume P(n) is true, prove P(n+1) is true.\nby induction\n\n\n[LN4.1 - Mathematical induction.pdf 第10页]\nProving a Property\nBase Case (n = 1): \nInduction Step: Assume P(i) for some i ≥"
+        }
+      ]
+    },
+    {
+      "question": "What is graph coloring?",
+      "expanded_question": "What is graph coloring?",
+      "status": "retrieved",
+      "top_score": 0.5734870628454058,
+      "extractive_answer": "- [LN10 - Graph coloring.pdf 第1页] Graph Coloring [LN10 - Graph coloring.pdf 第2页] This Lecture Graph coloring is another important problem in graph theory.（来源：LN10 - Graph coloring.pdf）\n- • Graph coloring • Applications • Some positive results • Planar graphs • Euler’s formula • 6-coloring [LN10 - Graph coloring.pdf 第3页] Graph Coloring Graph Coloring Problem: Given a graph, color all the vertices so that adjacent vertices get different colors.（来源：LN10 - Graph coloring.pdf）\n- [LN10 - Graph coloring.pdf 第4页] Optimal Coloring What graphs have chromatic number one?（来源：LN10 - Graph coloring.pdf）\n- [LN10 - Graph coloring.pdf 第31页] This Lecture • Graph coloring • Applications • Some positive results • Planar graphs • Euler’s formula • 6-coloring [LN10 - Graph coloring.pdf 第32页] Maximum Degree Suppose every vertex is of degree at most d.（来源：LN10 - Graph coloring.pdf）\n- How many colors do we need to color this graph?（来源：LN10 - Graph coloring.pdf）",
+      "llm_answer": "\n\n1. **简洁答案**  \nGraph coloring is a problem in graph theory where the goal is to assign colors to the vertices of a graph such that no two adjacent vertices share the same color. The objective is to use the minimum number of colors possible, known as the chromatic number of the graph. A graph is *k-colorable* if it can be colored with *k* colors under this rule.  \n\n2. **关键依据**  \n- 定义：课件明确指出图着色问题要求“color all the vertices so that adjacent vertices get different colors”（来源：LN10 - Graph coloring.pdf 第3页）。  \n- 目标：优化目标是“use minimum number of colors”（来源：LN10 - Graph coloring.pdf 第3页）。  \n- 相关概念：课件提到 *k-colorable* 的定义（来源：LN10 - Graph coloring.pdf 第3页）以及色数（chromatic number）的示例（如色数1对应无边图，色数2对应路径或环等）。  \n\n3. **资料不足说明**  \n当前资料已足够回答基本定义，但若需进一步解释具体算法、复杂度分析或更多实际应用场景（如调度问题、地图着色等），则需要补充其他课件内容。",
+      "llm_meta": {
+        "ok": true,
+        "content": "\n\n1. **简洁答案**  \nGraph coloring is a problem in graph theory where the goal is to assign colors to the vertices of a graph such that no two adjacent vertices share the same color. The objective is to use the minimum number of colors possible, known as the chromatic number of the graph. A graph is *k-colorable* if it can be colored with *k* colors under this rule.  \n\n2. **关键依据**  \n- 定义：课件明确指出图着色问题要求“color all the vertices so that adjacent vertices get different colors”（来源：LN10 - Graph coloring.pdf 第3页）。  \n- 目标：优化目标是“use minimum number of colors”（来源：LN10 - Graph coloring.pdf 第3页）。  \n- 相关概念：课件提到 *k-colorable* 的定义（来源：LN10 - Graph coloring.pdf 第3页）以及色数（chromatic number）的示例（如色数1对应无边图，色数2对应路径或环等）。  \n\n3. **资料不足说明**  \n当前资料已足够回答基本定义，但若需进一步解释具体算法、复杂度分析或更多实际应用场景（如调度问题、地图着色等），则需要补充其他课件内容。",
+        "model": "Qwen/Qwen3-32B",
+        "base_url": "https://api.siliconflow.cn/v1/chat/completions"
+      },
+      "results": [
+        {
+          "rank": 1,
+          "source": "LN10 - Graph coloring.pdf",
+          "score": 0.5734870628454058,
+          "text": "[LN10 - Graph coloring.pdf 第1页]\nGraph Coloring\n\n[LN10 - Graph coloring.pdf 第2页]\nThis Lecture\nGraph coloring is another important problem in graph theory.\nIt also has many applications, including the famous four color problem.\n• Graph coloring\n• Applications\n• Some positive results\n• Planar graphs\n• Euler’s formula\n• 6-coloring\n\n[LN10 - Graph coloring.pdf 第3页]\nGraph Coloring\nGraph Coloring Problem:\nGiven a graph, color all the vertices so that\nadjacent vertices get different colors.\nObjective: us"
+        },
+        {
+          "rank": 2,
+          "source": "LN10 - Graph coloring.pdf",
+          "score": 0.433345369397989,
+          "text": "esource for all the objects so that there would be no conflicts.\n\n[LN10 - Graph coloring.pdf 第31页]\nThis Lecture\n• Graph coloring\n• Applications\n• Some positive results\n• Planar graphs\n• Euler’s formula\n• 6-coloring\n\n[LN10 - Graph coloring.pdf 第32页]\nMaximum Degree\nSuppose every vertex is of degree at most d.\nHow many colors do we need to color this graph?\nFor an uncolored vertex v,\nit has at most d neighbors,\nand thus at most d different colors.\nSo, if we have d+1 colors,\nthen we can always color"
+        },
+        {
+          "rank": 3,
+          "source": "LN10 - Graph coloring.pdf",
+          "score": 0.36507933103283263,
+          "text": "Given a graph, color all the vertices so that\nadjacent vertices get different colors.\nObjective: use minimum number of colors.\n3-colorable\nDefinition. A graph is k-colorable if its vertices can be colored by\nk different colors so that adjacent vertices get different colors.\n\n[LN10 - Graph coloring.pdf 第4页]\nOptimal Coloring\nWhat graphs have chromatic number one?\nwhen there are no edges…\nWhat graphs have chromatic number 2?\nA path?  A cycle? A triangle?\nWhat graphs have chromatic number larger th"
+        }
+      ]
+    },
+    {
+      "question": "What is a decision tree?",
+      "expanded_question": "What is a decision tree?",
+      "status": "retrieved",
+      "top_score": 0.190065244731664,
+      "extractive_answer": "- A graph is a tree if there is a un（来源：LN8 - Introduction to graphs.pdf）\n- A tree is a connected graph with no cycles.（来源：LN8 - Introduction to graphs.pdf）",
+      "llm_answer": "\n\n1. **简洁答案**  \n   The provided materials only define a **tree** in graph theory (a connected graph with no cycles) and its properties (e.g., $ m = n - 1 $ edges, existence of leaves). There is no mention of a **decision tree**, which is a concept from machine learning/data science, not graph theory.  \n\n2. **关键依据**  \n   - All definitions in the fragments refer to **trees in graph theory** (e.g., \"connected graph with no cycles\" from LN8 - Introduction to graphs.pdf, pages 37, 40, 41, 42).  \n   - No content in the fragments discusses **decision trees** (e.g., classification, regression, splitting criteria, or node-based decision-making).  \n\n3. **资料不足说明**  \n   To answer the question about decision trees, you would need materials from **machine learning** or **data science** courses, such as:  \n   - Definition and structure of decision trees.  \n   - Applications in classification/regression.  \n   - Concepts like nodes, leaves, splitting rules, and entropy.",
+      "llm_meta": {
+        "ok": true,
+        "content": "\n\n1. **简洁答案**  \n   The provided materials only define a **tree** in graph theory (a connected graph with no cycles) and its properties (e.g., $ m = n - 1 $ edges, existence of leaves). There is no mention of a **decision tree**, which is a concept from machine learning/data science, not graph theory.  \n\n2. **关键依据**  \n   - All definitions in the fragments refer to **trees in graph theory** (e.g., \"connected graph with no cycles\" from LN8 - Introduction to graphs.pdf, pages 37, 40, 41, 42).  \n   - No content in the fragments discusses **decision trees** (e.g., classification, regression, splitting criteria, or node-based decision-making).  \n\n3. **资料不足说明**  \n   To answer the question about decision trees, you would need materials from **machine learning** or **data science** courses, such as:  \n   - Definition and structure of decision trees.  \n   - Applications in classification/regression.  \n   - Concepts like nodes, leaves, splitting rules, and entropy.",
+        "model": "Qwen/Qwen3-32B",
+        "base_url": "https://api.siliconflow.cn/v1/chat/completions"
+      },
+      "results": [
+        {
+          "rank": 1,
+          "source": "LN8 - Introduction to graphs.pdf",
+          "score": 0.190065244731664,
+          "text": "1页]\nDefinition. A tree is a connected graph with no cycles.\nCan a tree have no leaves? NO\nHow many edges does a tree have?\nLook at a leaf v.\nIs T-v a tree?\n1. Is T-v connected?\n2. Can T-v has a cycle? NO\nYES\nYES\nBy induction, T-v has (n-1)-1=n-2 edges.\nSo T has n-1 edges.\nTree Characterization by Number of Edges\nv\nm = n-1?\n\n[LN8 - Introduction to graphs.pdf 第42页]\nDefinition. A tree is a connected graph with no cycles.\nTree Characterizations\nCharacterization by paths:\nA graph is a tree if and onl"
+        },
+        {
+          "rank": 2,
+          "source": "LN8 - Introduction to graphs.pdf",
+          "score": 0.16009856189376287,
+          "text": "ble.\nFinitely many \nvertices\nNO\nthere is a cycle.\n\n[LN8 - Introduction to graphs.pdf 第40页]\nDefinition. A tree is a connected graph with no cycles.\nCan a tree have no leaves? NO\nHow many edges does a tree have? m = n-1?\nWe usually use n to denote the number of vertices,\nand use m to denote the number of edges in a graph.\nTree Characterization by Number of Edges\n\n[LN8 - Introduction to graphs.pdf 第41页]\nDefinition. A tree is a connected graph with no cycles.\nCan a tree have no leaves? NO\nHow many e"
+        },
+        {
+          "rank": 3,
+          "source": "LN8 - Introduction to graphs.pdf",
+          "score": 0.1567416246445859,
+          "text": "Tree\nGraphs with no cycles? A forest.\nConnected graphs with no cycles? A tree.\n\n\n[LN8 - Introduction to graphs.pdf 第37页]\nMore Trees\nleafleaf\nA leaf is a vertex of degree 1.\nMore leaves. Even more leaves.\n\n[LN8 - Introduction to graphs.pdf 第38页]\nTree Characterization by Path\nDefinition. A tree is a connected graph with no cycles.\nCan there be no path between u and v?\nCan there be more than one simple path between u and v?\nNO\nThis will create cycles.\nNO\nTheorem. A graph is a tree if there is a un"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "deepseek_env",
+
+    "model": {
+        "api": "deepseek",
+        "model": "deepseek-chat",
+        "params": {
+            "temperature": 0.4,
+            "max_tokens": 800
+        }
+    }
+}
+

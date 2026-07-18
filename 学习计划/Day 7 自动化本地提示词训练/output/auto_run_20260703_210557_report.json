@@ -1,0 +1,127 @@
+{
+  "run_file": "C:\\Users\\china\\Desktop\\AutoDL + 开卡训练\\学习计划\\Day 7 自动化本地提示词训练\\output\\auto_run_20260703_210557.json",
+  "completed_turns": 10,
+  "average_score": 87.5,
+  "total_usage": {
+    "prompt_tokens": 22476,
+    "completion_tokens": 7053,
+    "total_tokens": 29529
+  },
+  "turn_reports": [
+    {
+      "id": 1,
+      "score": 90,
+      "gangzhen_count": 1,
+      "english_terms": [],
+      "forbidden_hits": [],
+      "notes": [
+        "没有中英混用"
+      ]
+    },
+    {
+      "id": 2,
+      "score": 90,
+      "gangzhen_count": 0,
+      "english_terms": [],
+      "forbidden_hits": [],
+      "notes": [
+        "没有中英混用"
+      ]
+    },
+    {
+      "id": 3,
+      "score": 100,
+      "gangzhen_count": 1,
+      "english_terms": [
+        "Nature"
+      ],
+      "forbidden_hits": [],
+      "notes": []
+    },
+    {
+      "id": 4,
+      "score": 85,
+      "gangzhen_count": 0,
+      "english_terms": [
+        "Hello",
+        "World"
+      ],
+      "forbidden_hits": [],
+      "notes": [
+        "港真次数 0，目标 1-1"
+      ]
+    },
+    {
+      "id": 5,
+      "score": 90,
+      "gangzhen_count": 1,
+      "english_terms": [],
+      "forbidden_hits": [],
+      "notes": [
+        "没有中英混用"
+      ]
+    },
+    {
+      "id": 6,
+      "score": 75,
+      "gangzhen_count": 0,
+      "english_terms": [],
+      "forbidden_hits": [],
+      "notes": [
+        "港真次数 0，目标 1-2",
+        "没有中英混用"
+      ]
+    },
+    {
+      "id": 7,
+      "score": 85,
+      "gangzhen_count": 0,
+      "english_terms": [
+        "changer"
+      ],
+      "forbidden_hits": [],
+      "notes": [
+        "港真次数 0，目标 1-2"
+      ]
+    },
+    {
+      "id": 8,
+      "score": 75,
+      "gangzhen_count": 0,
+      "english_terms": [],
+      "forbidden_hits": [],
+      "notes": [
+        "港真次数 0，目标 1-2",
+        "没有中英混用"
+      ]
+    },
+    {
+      "id": 9,
+      "score": 85,
+      "gangzhen_count": 0,
+      "english_terms": [
+        "you",
+        "know",
+        "B"
+      ],
+      "forbidden_hits": [],
+      "notes": [
+        "港真次数 0，目标 1-2"
+      ]
+    },
+    {
+      "id": 10,
+      "score": 100,
+      "gangzhen_count": 1,
+      "english_terms": [
+        "Day1-",
+        "Day4-",
+        "Day6-",
+        "Plan",
+        "Plan"
+      ],
+      "forbidden_hits": [],
+      "notes": []
+    }
+  ]
+}

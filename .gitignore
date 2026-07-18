@@ -1,0 +1,84 @@
+# Private screenshots and machine information
+其他截图/
+电脑配置.png
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# Original source material and personal documents
+data/
+简历.txt
+*.pdf
+
+# Separate repository; linked from the root README instead of nested here
+multi-GPU training project/
+
+# Secrets and machine-specific configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+keys.json
+**/keys.json
+credentials.json
+secrets.json
+**/profiles/mindcraft_lora.json
+
+# Python caches, virtual environments, logs and local conversation records
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+*.log
+logs/
+**/logs/
+**/conversations/
+**/memory.json
+**/bots/
+
+# Model weights, checkpoints and Hugging Face caches
+hf-cache/
+**/hf-cache/
+.cache/
+**/.cache/
+artifacts/
+**/artifacts/
+checkpoints/
+**/checkpoint-*/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.onnx
+
+# Node.js and Mindcraft runtime files
+node_modules/
+**/node_modules/
+package-lock.json
+**/package-lock.json
+tmp/
+**/tmp/
+results/
+**/results/
+server_data/
+**/server_data/
+wandb/
+experiments/
+
+# IDE and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

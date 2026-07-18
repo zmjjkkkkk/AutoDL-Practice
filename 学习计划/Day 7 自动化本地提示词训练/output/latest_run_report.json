@@ -1,0 +1,202 @@
+{
+  "run_file": "C:\\Users\\china\\Desktop\\AutoDL + 开卡训练\\学习计划\\Day 7 自动化本地提示词训练\\output\\latest_run.json",
+  "completed_turns": 10,
+  "average_score": 59.5,
+  "total_usage": {
+    "prompt_tokens": 22476,
+    "completion_tokens": 7053,
+    "total_tokens": 29529
+  },
+  "turn_reports": [
+    {
+      "id": 1,
+      "score": 60,
+      "gangzhen_count": 1,
+      "english_terms": [],
+      "forbidden_hits": [
+        "我跟UCLA"
+      ],
+      "repetitive_hits": [
+        "别急着感动"
+      ],
+      "notes": [
+        "没有中英混用",
+        "疑似虚构身份/AI腔：['我跟UCLA']",
+        "出现模板化口癖：['别急着感动']"
+      ]
+    },
+    {
+      "id": 2,
+      "score": 55,
+      "gangzhen_count": 0,
+      "english_terms": [],
+      "forbidden_hits": [
+        "我在UCLA见过"
+      ],
+      "repetitive_hits": [
+        "三个月后你再问我",
+        "别急着感动"
+      ],
+      "notes": [
+        "没有中英混用",
+        "疑似虚构身份/AI腔：['我在UCLA见过']",
+        "出现模板化口癖：['三个月后你再问我', '别急着感动']"
+      ]
+    },
+    {
+      "id": 3,
+      "score": 70,
+      "gangzhen_count": 1,
+      "english_terms": [
+        "Nature"
+      ],
+      "forbidden_hits": [
+        "我在UCLA见过",
+        "昨天我路过"
+      ],
+      "repetitive_hits": [
+        "别问为什么"
+      ],
+      "notes": [
+        "疑似虚构身份/AI腔：['我在UCLA见过', '昨天我路过']",
+        "出现模板化口癖：['别问为什么']"
+      ]
+    },
+    {
+      "id": 4,
+      "score": 45,
+      "gangzhen_count": 0,
+      "english_terms": [
+        "Hello",
+        "World"
+      ],
+      "forbidden_hits": [
+        "上周有个"
+      ],
+      "repetitive_hits": [
+        "别问为什么",
+        "三个月后你再问我",
+        "别急着感动"
+      ],
+      "notes": [
+        "港真次数 0，目标 1-1",
+        "疑似虚构身份/AI腔：['上周有个']",
+        "出现模板化口癖：['别问为什么', '三个月后你再问我', '别急着感动']"
+      ]
+    },
+    {
+      "id": 5,
+      "score": 80,
+      "gangzhen_count": 1,
+      "english_terms": [],
+      "forbidden_hits": [],
+      "repetitive_hits": [
+        "三个月后你再问我",
+        "别急着感动"
+      ],
+      "notes": [
+        "没有中英混用",
+        "出现模板化口癖：['三个月后你再问我', '别急着感动']"
+      ]
+    },
+    {
+      "id": 6,
+      "score": 60,
+      "gangzhen_count": 0,
+      "english_terms": [],
+      "forbidden_hits": [],
+      "repetitive_hits": [
+        "别问为什么",
+        "三个月后你再问我",
+        "别急着感动"
+      ],
+      "notes": [
+        "港真次数 0，目标 1-2",
+        "没有中英混用",
+        "出现模板化口癖：['别问为什么', '三个月后你再问我', '别急着感动']"
+      ]
+    },
+    {
+      "id": 7,
+      "score": 50,
+      "gangzhen_count": 0,
+      "english_terms": [
+        "changer"
+      ],
+      "forbidden_hits": [
+        "上周有个"
+      ],
+      "repetitive_hits": [
+        "别问为什么",
+        "三个月后你再问我"
+      ],
+      "notes": [
+        "港真次数 0，目标 1-2",
+        "疑似虚构身份/AI腔：['上周有个']",
+        "出现模板化口癖：['别问为什么', '三个月后你再问我']"
+      ]
+    },
+    {
+      "id": 8,
+      "score": 35,
+      "gangzhen_count": 0,
+      "english_terms": [],
+      "forbidden_hits": [
+        "我在UCLA见过"
+      ],
+      "repetitive_hits": [
+        "别问为什么",
+        "三个月后你再问我",
+        "别急着感动"
+      ],
+      "notes": [
+        "港真次数 0，目标 1-2",
+        "没有中英混用",
+        "疑似虚构身份/AI腔：['我在UCLA见过']",
+        "出现模板化口癖：['别问为什么', '三个月后你再问我', '别急着感动']"
+      ]
+    },
+    {
+      "id": 9,
+      "score": 50,
+      "gangzhen_count": 0,
+      "english_terms": [
+        "you",
+        "know",
+        "B"
+      ],
+      "forbidden_hits": [
+        "我在UCLA见过"
+      ],
+      "repetitive_hits": [
+        "三个月后你再问我",
+        "别急着感动"
+      ],
+      "notes": [
+        "港真次数 0，目标 1-2",
+        "疑似虚构身份/AI腔：['我在UCLA见过']",
+        "出现模板化口癖：['三个月后你再问我', '别急着感动']"
+      ]
+    },
+    {
+      "id": 10,
+      "score": 90,
+      "gangzhen_count": 1,
+      "english_terms": [
+        "Day1-",
+        "Day4-",
+        "Day6-",
+        "Plan",
+        "Plan"
+      ],
+      "forbidden_hits": [],
+      "repetitive_hits": [
+        "别问为什么",
+        "别急着感动"
+      ],
+      "notes": [
+        "出现模板化口癖：['别问为什么', '别急着感动']"
+      ]
+    }
+  ]
+}

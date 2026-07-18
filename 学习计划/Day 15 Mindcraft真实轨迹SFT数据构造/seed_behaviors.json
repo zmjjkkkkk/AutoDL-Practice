@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "source_baseline": "../Day 13 Mindcraft行为基线测试/output/latest_behavior_baseline.json",
+  "system_prompt": "You are a Minecraft agent running in Mindcraft. The current player's in-game name is robot. For a pure greeting, reply briefly in natural language. For a requested action, output exactly one valid Mindcraft command and no explanation.",
+  "records": [
+    {
+      "id": "greeting",
+      "source_prompt": "hello",
+      "assistant": "Hello! What can I help with?",
+      "label_status": "verified_real_behavior",
+      "include_in_training": true,
+      "variants": ["hello", "hi", "hey there", "good morning", "good evening", "hello bot", "hi mindcraft", "hey", "are you there", "hello, can you hear me?"]
+    },
+    {
+      "id": "come_to_player",
+      "source_prompt": "come to me",
+      "assistant": "!goToPlayer(\"robot\", 2)",
+      "label_status": "verified_real_behavior",
+      "include_in_training": true,
+      "variants": ["come to me", "come here", "walk over to me", "please come to my position", "move to me", "come closer", "get over here", "go to where I am", "meet me here", "come stand next to me"]
+    },
+    {
+      "id": "follow_player",
+      "source_prompt": "follow me",
+      "assistant": "!followPlayer(\"robot\", 3)",
+      "label_status": "verified_real_behavior",
+      "include_in_training": true,
+      "variants": ["follow me", "follow me around", "come with me", "stay behind me", "keep following me", "walk with me", "please follow me", "trail me", "follow my lead", "stick with me"]
+    },
+    {
+      "id": "stop_action",
+      "source_prompt": "stop",
+      "assistant": "!stop",
+      "label_status": "verified_real_behavior",
+      "include_in_training": true,
+      "variants": ["stop", "stop what you are doing", "halt", "please stop", "cancel that", "do not continue", "freeze", "pause your current task", "stop moving", "end the action"]
+    },
+    {
+      "id": "nearby_blocks",
+      "source_prompt": "what blocks are nearby",
+      "assistant": "!nearbyBlocks",
+      "label_status": "verified_real_behavior",
+      "include_in_training": true,
+      "variants": ["what blocks are nearby", "show nearby blocks", "what is around us", "list the blocks close by", "scan nearby blocks", "what can you see around here", "tell me the nearby block types", "check the surrounding blocks", "look for blocks nearby", "what blocks are close"]
+    },
+    {
+      "id": "collect_some_wood",
+      "source_prompt": "collect some wood",
+      "assistant": "!collectBlocks(\"oak_log\", 4)",
+      "label_status": "policy_specified_from_real_behavior",
+      "include_in_training": true,
+      "policy_note": "The Day 13 trajectory confirmed successful wood collection but did not preserve exact arguments. This project uses oak_log x4 as the explicit default for an unspecified wood request.",
+      "variants": ["collect some wood", "get me some wood", "gather wood", "please collect wood", "find and chop wood", "bring back some wood", "go get wooden logs", "harvest some logs", "collect a few logs", "I need some wood"]
+    },
+    {
+      "id": "collect_oak_logs",
+      "source_prompt": "collect 4 oak logs",
+      "assistant": "!collectBlocks(\"oak_log\", 4)",
+      "label_status": "verified_real_behavior",
+      "include_in_training": true,
+      "variants": ["collect 4 oak logs", "get four oak logs", "gather 4 oak logs", "please collect four oak logs", "find and mine 4 oak logs", "bring me 4 oak logs", "harvest four oak logs", "chop 4 oak logs", "I need four oak logs", "get exactly 4 oak logs"]
+    },
+    {
+      "id": "craft_planks",
+      "source_prompt": "craft some planks",
+      "assistant": "!craftRecipe(\"oak_planks\", 1)",
+      "label_status": "verified_real_behavior",
+      "include_in_training": true,
+      "variants": ["craft some planks", "make oak planks", "turn wood into planks", "please craft oak planks", "make wooden planks", "craft one batch of oak planks", "convert an oak log to planks", "I need oak planks", "create some planks", "make planks from the oak wood"]
+    },
+    {
+      "id": "check_inventory",
+      "source_prompt": "what do you have in your inventory",
+      "assistant": "!inventory",
+      "label_status": "verified_real_trajectory",
+      "include_in_training": true,
+      "variants": ["what do you have in your inventory", "show your inventory", "check your inventory", "what are you carrying", "list your items", "do you have anything", "tell me what is in your inventory", "open inventory", "what items do you have", "inventory check"]
+    },
+    {
+      "id": "recover_find_tree",
+      "source_prompt": "try again and find another tree",
+      "assistant": "!searchForBlock(\"oak_log\", 32)",
+      "label_status": "verified_real_trajectory",
+      "include_in_training": true,
+      "variants": ["try again and find another tree", "look for another tree", "search for an oak tree again", "find a new tree", "try finding more oak logs", "go search for a tree", "the last attempt failed, find another tree", "look for nearby oak logs", "search again for an oak tree", "please locate another tree"]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+transformers>=4.51.0
+peft>=0.15.0
+accelerate>=1.6.0
+datasets>=3.5.0
+safetensors>=0.5.0
+sentencepiece>=0.2.0
+modelscope>=1.26.0

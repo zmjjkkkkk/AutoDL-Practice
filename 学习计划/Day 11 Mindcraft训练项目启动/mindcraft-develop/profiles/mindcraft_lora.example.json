@@ -1,0 +1,14 @@
+{
+  "name": "REPLACE_WITH_YOUR_EXISTING_BOT_NAME",
+  "model": {
+    "api": "mindcraft_lora",
+    "model": "command-router",
+    "url": "http://127.0.0.1:18765",
+    "params": {
+      "timeout_ms": 120000
+    }
+  },
+  "cooldown": 0,
+  "conversation_examples": [],
+  "coding_examples": []
+}

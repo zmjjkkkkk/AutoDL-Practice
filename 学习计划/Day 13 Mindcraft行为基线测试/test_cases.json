@@ -1,0 +1,73 @@
+[
+  {
+    "id": "chat_hello",
+    "category": "chat",
+    "command": "hello",
+    "expected": "Bot gives a short greeting.",
+    "success_criteria": "Bot replies naturally without trying unnecessary actions."
+  },
+  {
+    "id": "move_come_here",
+    "category": "movement",
+    "command": "come to me",
+    "expected": "Bot moves close to the player.",
+    "success_criteria": "Bot reaches the player or clearly attempts to pathfind."
+  },
+  {
+    "id": "move_follow_me",
+    "category": "movement",
+    "command": "follow me",
+    "expected": "Bot follows the player.",
+    "success_criteria": "Bot follows for at least several seconds."
+  },
+  {
+    "id": "control_stop",
+    "category": "control",
+    "command": "stop",
+    "expected": "Bot stops current action.",
+    "success_criteria": "Bot issues or obeys a stop command."
+  },
+  {
+    "id": "perception_nearby_blocks",
+    "category": "perception",
+    "command": "what blocks are nearby?",
+    "expected": "Bot checks or reports nearby blocks.",
+    "success_criteria": "Bot uses nearby-block information or gives a plausible report from commands."
+  },
+  {
+    "id": "collect_some_wood",
+    "category": "collection",
+    "command": "collect some wood",
+    "expected": "Bot attempts to collect logs.",
+    "success_criteria": "Bot finds or searches for wood and starts collecting."
+  },
+  {
+    "id": "collect_four_oak_logs",
+    "category": "collection",
+    "command": "collect 4 oak logs",
+    "expected": "Bot collects four oak logs.",
+    "success_criteria": "Inventory eventually contains at least four oak logs, or bot makes a sensible attempt."
+  },
+  {
+    "id": "craft_planks",
+    "category": "crafting",
+    "command": "craft some planks",
+    "expected": "Bot crafts planks if it has logs.",
+    "success_criteria": "Bot crafts planks or explains that it needs logs first."
+  },
+  {
+    "id": "inventory_check",
+    "category": "state",
+    "command": "what do you have in your inventory?",
+    "expected": "Bot checks and reports inventory.",
+    "success_criteria": "Bot response matches observed or command-reported inventory."
+  },
+  {
+    "id": "recover_after_failure",
+    "category": "recovery",
+    "command": "try again and find another tree",
+    "expected": "Bot adjusts after failing to find wood.",
+    "success_criteria": "Bot changes strategy instead of repeating the same failed action."
+  }
+]
+

@@ -1,0 +1,169 @@
+{
+  "created_at": "2026-07-13T19:59:50",
+  "project": "Mindcraft behavior baseline",
+  "agent": "deepseek_env",
+  "minecraft_version": "1.21.6",
+  "case_count": 10,
+  "records": [
+    {
+      "case": {
+        "id": "chat_hello",
+        "category": "chat",
+        "command": "hello",
+        "expected": "Bot gives a short greeting.",
+        "success_criteria": "Bot replies naturally without trying unnecessary actions."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "Hey player!What's up?",
+      "observed_behavior": "无动作",
+      "failure_type": "none",
+      "notes": "1"
+    },
+    {
+      "case": {
+        "id": "move_come_here",
+        "category": "movement",
+        "command": "come to me",
+        "expected": "Bot moves close to the player.",
+        "success_criteria": "Bot reaches the player or clearly attempts to pathfind."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "Here I am!",
+      "observed_behavior": "向玩家走去",
+      "failure_type": "none",
+      "notes": "2"
+    },
+    {
+      "case": {
+        "id": "move_follow_me",
+        "category": "movement",
+        "command": "follow me",
+        "expected": "Bot follows the player.",
+        "success_criteria": "Bot follows for at least several seconds."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "!followPlayer",
+      "observed_behavior": "跟随玩家移动",
+      "failure_type": "none",
+      "notes": "3"
+    },
+    {
+      "case": {
+        "id": "control_stop",
+        "category": "control",
+        "command": "stop",
+        "expected": "Bot stops current action.",
+        "success_criteria": "Bot issues or obeys a stop command."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "!stop",
+      "observed_behavior": "停止跟随玩家",
+      "failure_type": "none",
+      "notes": "4"
+    },
+    {
+      "case": {
+        "id": "perception_nearby_blocks",
+        "category": "perception",
+        "command": "what blocks are nearby?",
+        "expected": "Bot checks or reports nearby blocks.",
+        "success_criteria": "Bot uses nearby-block information or gives a plausible report from commands."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "!nearbyBlocks",
+      "observed_behavior": "他精准地说出了附近的方块名称",
+      "failure_type": "none",
+      "notes": "5"
+    },
+    {
+      "case": {
+        "id": "collect_some_wood",
+        "category": "collection",
+        "command": "collect some wood",
+        "expected": "Bot attempts to collect logs.",
+        "success_criteria": "Bot finds or searches for wood and starts collecting."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "!collectBlocks",
+      "observed_behavior": "AI砍伐了一棵树木",
+      "failure_type": "none",
+      "notes": "6"
+    },
+    {
+      "case": {
+        "id": "collect_four_oak_logs",
+        "category": "collection",
+        "command": "collect 4 oak logs",
+        "expected": "Bot collects four oak logs.",
+        "success_criteria": "Inventory eventually contains at least four oak logs, or bot makes a sensible attempt."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "!collectBlocks(\"oak_log\",4)",
+      "observed_behavior": "砍伐了4个橡木",
+      "failure_type": "none",
+      "notes": "7"
+    },
+    {
+      "case": {
+        "id": "craft_planks",
+        "category": "crafting",
+        "command": "craft some planks",
+        "expected": "Bot crafts planks if it has logs.",
+        "success_criteria": "Bot crafts planks or explains that it needs logs first."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "!craftRecipe",
+      "observed_behavior": "合成了12块木板",
+      "failure_type": "none",
+      "notes": "8"
+    },
+    {
+      "case": {
+        "id": "inventory_check",
+        "category": "state",
+        "command": "what do you have in your inventory?",
+        "expected": "Bot checks and reports inventory.",
+        "success_criteria": "Bot response matches observed or command-reported inventory."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "!inventory",
+      "observed_behavior": "正确报出了物品栏内容",
+      "failure_type": "none",
+      "notes": "9"
+    },
+    {
+      "case": {
+        "id": "recover_after_failure",
+        "category": "recovery",
+        "command": "try again and find another tree",
+        "expected": "Bot adjusts after failing to find wood.",
+        "success_criteria": "Bot changes strategy instead of repeating the same failed action."
+      },
+      "understood": true,
+      "acted": true,
+      "succeeded": true,
+      "bot_reply": "!searchForBlock",
+      "observed_behavior": "寻找了新的橡木资源",
+      "failure_type": "none",
+      "notes": "10"
+    }
+  ]
+}
