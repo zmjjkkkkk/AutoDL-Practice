@@ -1,6 +1,6 @@
 # 大模型应用与智能体学习记录
 
-这是一个从 Day 1 到 Day 17 的阶段性学习仓库，记录我从远程 GPU 环境配置、RAG 问答、提示词工程与 LoRA 微调，逐步完成到 Minecraft 智能体训练、部署与真实游戏联调的过程。
+这是一个从 Day 1 到 Day 18 的阶段性学习仓库，记录我从远程 GPU 环境配置、RAG 问答、提示词工程与 LoRA 微调，逐步完成到 Minecraft 智能体训练、部署与真实游戏联调的过程。
 
 仓库的定位是学习记录和项目作品集，而不是一个可直接用于生产环境的完整产品。文档中保留了实验目标、关键决策、失败排查和可复现脚本，方便向教授或面试官展示学习路径与实际产出。
 
@@ -27,7 +27,7 @@
 
 ```text
 学习计划/
-  Day 1 - Day 17/       阶段文档、脚本和实验记录
+  Day 1 - Day 18/       阶段文档、脚本和实验记录
   Day 11 .../mindcraft-develop/
                          Mindcraft 上游项目快照及本项目的适配改动
 data/                    本地原始学习语料（默认不上传）
@@ -45,6 +45,7 @@ multi-GPU training project/
 3. `Day 13 Mindcraft行为基线测试/README.md`：游戏智能体基线和轨迹数据来源。
 4. `Day 15 Mindcraft真实轨迹SFT数据构造/README.md`：SFT 数据构造与训练。
 5. `Day 16 LoRA推理与Mindcraft安全接入/README.md`、`Day 17 LoRA服务与Mindcraft联调/README.md`：安全推理服务与游戏内验证。
+6. `Day 18 vLLM部署与高并发推理/README.md`：vLLM 托管 LoRA 与 OpenAI 兼容推理服务。
 
 ## 第三方项目与署名
 
@@ -69,4 +70,4 @@ multi-GPU training project/
 
 ## 当前状态
 
-Day 1-17 已完成归档。后续将以新的阶段目录继续迭代数据、评测集和游戏任务覆盖范围。
+Day 1-17 已完成归档，Day 18 正在进行 vLLM 推理服务学习。后续将继续迭代数据、评测集和游戏任务覆盖范围。
