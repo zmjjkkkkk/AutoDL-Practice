@@ -9,6 +9,9 @@
 # Original source material and personal documents
 data/
 简历.txt
+record.txt
+学习计划/Day 19 交互轨迹自动记录与数据扩展/output/
+day19-*-upload.zip
 *.pdf
 
 # Secrets and machine-specific configuration

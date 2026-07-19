@@ -12,12 +12,14 @@ const BLOCKED_REPLY = 'I could not map that request to a verified Mindcraft acti
 const NO_RESPONSE = '\t';
 
 
-function pendingPlayerText(turns) {
+function pendingPlayerText(turns, playerName) {
     const latest = turns.at(-1);
     if (latest?.role !== 'user' || typeof latest.content !== 'string') return '';
 
     // Mindcraft stores player chat as "player_name: message"; Day 15 SFT used just "message".
-    return latest.content.replace(/^[^:\n]{1,48}:\s*/, '').trim();
+    const match = latest.content.match(/^([^:\n]{1,48}):\s*(.*)$/s);
+    if (!match || match[1].trim().toLowerCase() !== playerName.toLowerCase()) return '';
+    return match[2].trim();
 }
 
 
@@ -39,10 +41,14 @@ function completedQueryReply(turns) {
     if (result?.role !== 'system' || command?.role !== 'assistant') return null;
 
     const commandName = command.content?.trim();
-    if (commandName !== '!nearbyBlocks' && commandName !== '!inventory') return null;
+    if (!['!nearbyBlocks', '!inventory', '!stats'].includes(commandName)) return null;
 
     const content = typeof result.content === 'string' ? result.content.trim() : '';
-    if (!content) return commandName === '!nearbyBlocks' ? 'No nearby block information was returned.' : 'No inventory information was returned.';
+    if (!content) {
+        if (commandName === '!nearbyBlocks') return 'No nearby block information was returned.';
+        if (commandName === '!inventory') return 'No inventory information was returned.';
+        return 'No status information was returned.';
+    }
     return content;
 }
 
@@ -69,6 +75,7 @@ export class MindcraftLora {
         this.model_name = model_name || 'command-router';
         this.url = (url || 'http://127.0.0.1:18765').replace(/\/$/, '');
         this.timeoutMs = params?.timeout_ms || 120000;
+        this.playerName = params?.player_name || 'robot';
         this.logger = new MindcraftInteractionLogger({
             agentName: this.model_name,
             logDir: params?.interaction_log_dir,
@@ -95,7 +102,7 @@ export class MindcraftLora {
         const queryReply = completedQueryReply(turns);
         if (queryReply !== null) return queryReply;
 
-        const text = pendingPlayerText(turns);
+        const text = pendingPlayerText(turns, this.playerName);
         // Respond only to a new final player message, except for the two verified query-result replies above.
         if (!text) return NO_RESPONSE;
 

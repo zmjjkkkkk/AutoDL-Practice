@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "system_prompt": "You are a Minecraft agent running in Mindcraft. The current player's in-game name is robot. For a pure greeting, reply briefly in natural language. For a requested action, output exactly one valid Mindcraft command and no explanation.",
+  "records": [
+    {
+      "id": "check_day_night",
+      "source_prompt": "is it day or night",
+      "assistant": "!stats",
+      "label_status": "source_api_confirmed_pending_game_test",
+      "include_in_experimental_training": true,
+      "runtime_requirement": "The adapter must forward the !stats system result back to the player.",
+      "variants": ["is it day or night", "what time of day is it", "is it nighttime", "tell me whether it is day or night", "check the current time", "what time is it in the world", "is it morning or evening", "are we in daytime now", "look up the time of day", "what is the current Minecraft time"]
+    },
+    {
+      "id": "give_one_oak_log",
+      "source_prompt": "give me one oak log",
+      "assistant": "!givePlayer(\"robot\", \"oak_log\", 1)",
+      "label_status": "source_api_confirmed_pending_game_test",
+      "include_in_experimental_training": true,
+      "runtime_requirement": "Bot must have an oak_log and be able to reach player robot.",
+      "variants": ["give me one oak log", "hand me an oak log", "give me a single oak log", "pass one oak log to me", "bring me one oak log", "drop one oak log for me", "can I have one oak log", "please give me an oak log", "share one oak log with me", "give robot one oak log"]
+    },
+    {
+      "id": "attack_creeper",
+      "source_prompt": "attack the nearest creeper",
+      "assistant": "!attack(\"creeper\")",
+      "label_status": "source_api_confirmed_pending_game_test",
+      "include_in_experimental_training": true,
+      "runtime_requirement": "A creeper must be nearby; test only in a controlled local world.",
+      "variants": ["attack the nearest creeper", "kill a creeper", "fight the creeper", "go attack a creeper", "take down the closest creeper", "attack that creeper", "defeat a nearby creeper", "fight a creeper for me", "find and attack a creeper", "eliminate the closest creeper"]
+    },
+    {
+      "id": "find_iron_ore",
+      "source_prompt": "find an iron ore",
+      "assistant": "!searchForBlock(\"iron_ore\", 32)",
+      "label_status": "source_api_confirmed_pending_game_test",
+      "include_in_experimental_training": true,
+      "runtime_requirement": "Iron ore must exist within the search range, otherwise a not-found result is expected.",
+      "variants": ["find an iron ore", "look for iron ore", "search for nearby iron ore", "find me some iron", "locate an iron ore block", "go search for iron", "look for iron underground", "can you find iron ore", "seek out an iron ore vein", "find the closest iron ore"]
+    },
+    {
+      "id": "eat_apple",
+      "source_prompt": "eat an apple",
+      "assistant": "!consume(\"apple\")",
+      "label_status": "source_api_confirmed_pending_game_test",
+      "include_in_experimental_training": true,
+      "runtime_requirement": "Bot inventory must contain an apple and hunger must permit consumption.",
+      "variants": ["eat an apple", "please eat the apple", "consume an apple", "have an apple", "eat one apple now", "use an apple for food", "you should eat an apple", "restore hunger with an apple", "take a bite of an apple", "go ahead and eat your apple"]
+    },
+    {
+      "id": "craft_iron_sword",
+      "source_prompt": "make an iron sword",
+      "assistant": "!craftRecipe(\"iron_sword\", 1)",
+      "label_status": "source_api_confirmed_pending_game_test",
+      "include_in_experimental_training": true,
+      "runtime_requirement": "Bot needs the required materials and access to a crafting table.",
+      "variants": ["make an iron sword", "craft an iron sword", "please create an iron sword", "forge an iron sword", "turn the iron into a sword", "I need an iron sword", "craft one iron sword", "make me an iron blade", "can you craft an iron sword", "build an iron sword at the crafting table"]
+    }
+  ]
+}
