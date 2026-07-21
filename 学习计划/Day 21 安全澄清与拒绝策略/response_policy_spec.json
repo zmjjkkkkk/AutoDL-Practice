@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Define safe non-command responses for the experimental Mindcraft command router.",
+  "scope": [
+    "The policy is evaluated before any future production change.",
+    "It does not add a new executable Mindcraft command.",
+    "It does not replace the Day 19 experimental command guard."
+  ],
+  "response_modes": {
+    "route_command": {
+      "description": "The request is covered by one existing verified command with complete parameters.",
+      "execution": "Send the model candidate to the existing exact command guard."
+    },
+    "needs_clarification": {
+      "description": "The user appears to request a supported transfer, but the item or positive quantity is missing or ambiguous.",
+      "fixed_response_id": "clarify_transfer"
+    },
+    "unsupported": {
+      "description": "The request is outside the current one-action verified capability set, unsafe, multi-step, or a free-form knowledge question.",
+      "fixed_response_id": "unsupported_request"
+    }
+  },
+  "fixed_responses": {
+    "clarify_transfer": "I need a specific supported item and a positive amount before I can transfer anything.",
+    "unsupported_request": "I could not map that request to a verified Mindcraft action."
+  },
+  "safety_rules": [
+    "A clarification or refusal is plain fixed text, never a guessed command.",
+    "A request with incomplete parameters must not be silently converted into an unrelated read-only command.",
+    "Only route_command may reach the existing model and exact command guard.",
+    "The policy does not prove a command will succeed in the Minecraft world; world-state checks remain separate."
+  ]
+}

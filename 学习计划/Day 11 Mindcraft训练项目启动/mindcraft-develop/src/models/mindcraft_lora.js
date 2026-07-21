@@ -6,6 +6,7 @@ the gateway's approved value so Mindcraft never receives raw model output.
 */
 
 import { MindcraftInteractionLogger } from './mindcraft_interaction_logger.js';
+import { formatQueryFeedback } from './game_feedback_formatter.js';
 
 
 const BLOCKED_REPLY = 'I could not map that request to a verified Mindcraft action.';
@@ -49,7 +50,7 @@ function completedQueryReply(turns) {
         if (commandName === '!inventory') return 'No inventory information was returned.';
         return 'No status information was returned.';
     }
-    return content;
+    return formatQueryFeedback(commandName, content);
 }
 
 
