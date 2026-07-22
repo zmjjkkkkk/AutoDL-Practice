@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Offline cases for the Day 22 vision-observation guard. No real screenshots are included.",
+  "cases": [
+    {
+      "id": "valid_tree_scene",
+      "raw_output": "{\"summary\": \"I can see oak logs and grass in a daylight forest scene.\", \"scene_labels\": [\"daylight\", \"tree\"], \"visible_blocks\": [\"oak_log\", \"grass_block\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.91, \"uncertainties\": []}",
+      "expected": {"accepted": true, "value": "I can see oak logs and grass in a daylight forest scene."}
+    },
+    {
+      "id": "valid_uncertain_scene",
+      "raw_output": "{\"summary\": \"The scene may contain water ahead, but the view is partially blocked.\", \"scene_labels\": [\"water\"], \"visible_blocks\": [\"water\"], \"visible_entities\": [], \"hazards\": [\"water\"], \"confidence\": 0.48, \"uncertainties\": [\"The far shoreline is obscured.\"]}",
+      "expected": {"accepted": true, "value": "The scene may contain water ahead, but the view is partially blocked."}
+    },
+    {
+      "id": "reject_command_in_summary",
+      "raw_output": "{\"summary\": \"!collectBlocks(\\\"oak_log\\\", 4)\", \"scene_labels\": [\"tree\"], \"visible_blocks\": [\"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}",
+      "expected": {"accepted": false, "reason": "unsafe_summary"}
+    },
+    {
+      "id": "reject_action_field",
+      "raw_output": "{\"summary\": \"A tree is visible.\", \"scene_labels\": [\"tree\"], \"visible_blocks\": [\"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": [], \"action\": \"!collectBlocks(\\\"oak_log\\\", 4)\"}",
+      "expected": {"accepted": false, "reason": "unexpected_fields"}
+    },
+    {
+      "id": "reject_non_json",
+      "raw_output": "There is probably a tree ahead.",
+      "expected": {"accepted": false, "reason": "invalid_json"}
+    },
+    {
+      "id": "reject_unknown_label",
+      "raw_output": "{\"summary\": \"A tree is visible.\", \"scene_labels\": [\"build_house\"], \"visible_blocks\": [\"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}",
+      "expected": {"accepted": false, "reason": "invalid_scene_labels"}
+    }
+  ]
+}

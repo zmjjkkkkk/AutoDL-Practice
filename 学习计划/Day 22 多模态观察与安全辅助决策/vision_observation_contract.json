@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "purpose": "A safe contract between a future vision-language model and the Mindcraft command router.",
+  "input": {
+    "image": "One current Minecraft frame supplied locally; no player screenshots are committed to the repository.",
+    "instruction": "Describe only visible, decision-relevant facts. Do not propose or emit commands."
+  },
+  "output": {
+    "required_keys": [
+      "summary",
+      "scene_labels",
+      "visible_blocks",
+      "visible_entities",
+      "hazards",
+      "confidence",
+      "uncertainties"
+    ],
+    "summary": "One plain-text sentence, 240 characters or fewer, with no command marker.",
+    "scene_labels": ["daylight", "night", "tree", "open_area", "water", "cave", "inventory_screen", "unknown"],
+    "visible_blocks": "Up to eight Minecraft-style block identifiers.",
+    "visible_entities": "Up to eight Minecraft-style entity identifiers.",
+    "hazards": ["water", "lava", "fall", "hostile_mob", "unknown"],
+    "confidence": "Number from 0.0 to 1.0.",
+    "uncertainties": "Up to four short plain-text uncertainty notes."
+  },
+  "safety_boundary": [
+    "The vision output is observation only, never an executable action.",
+    "A later command request must still pass through the existing text model and exact command allowlist.",
+    "Any invalid, multiline, command-like, or extra-field response is rejected and replaced by a fixed safe message.",
+    "The observation model must not be used to infer private real-world information from user images."
+  ]
+}
