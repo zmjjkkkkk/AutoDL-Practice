@@ -15,6 +15,8 @@ record.txt
 学习计划/Day 21 安全澄清与拒绝策略/reports/
 day19-*-upload.zip
 学习计划/Day 22 多模态观察与安全辅助决策/reports/
+学习计划/Day 23 视觉观察API与基准评测/reports/
+学习计划/Day 23 视觉观察API与基准评测/vision_benchmark_manifest.json
 *.pdf
 
 # Secrets and machine-specific configuration

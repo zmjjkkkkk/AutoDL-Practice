@@ -25,13 +25,15 @@ There is deliberately no arrow from the vision model directly to the command all
 ## Files
 
 - `vision_observation_contract.json`: the exact permitted input/output contract.
-- `vision_observation_guard.py`: rejects malformed, command-like, multiline, or extra-field vision output.
+- `vision_observation_guard.py`: rejects malformed, command-like, extra-field, duplicate, or out-of-contract vision output.
 - `vision_observation_cases.json`: six synthetic offline cases; no real screenshots are stored.
 - `test_vision_observation_guard.py`: runs the guard cases without a vision model or GPU.
 - `check_vision_environment.py`: reports GPU, PyTorch, and vLLM readiness before model download.
 - `query_vision_observation.py`: sends one explicitly selected local image to the future vision endpoint, then prints the raw model result and guarded result. It never calls Mindcraft.
 
 The client keeps the original screenshot unchanged. Before upload it creates a temporary in-memory JPEG whose longest side defaults to 768 pixels. This keeps image token usage inside the small observation context budget and avoids creating a derived screenshot on disk.
+
+The repository keeps a JSON Schema as a contract reference, while the current vLLM deployment uses its compatible `json_object` response mode. The installed grammar backend does not fully implement the contract schema and can produce malformed array output under full JSON Schema constraints. The prompt requests compact lists, and the Day 22 guard remains the final authority: it enforces exact keys, identifier limits, enums, and duplicate rejection before any observation is accepted.
 
 ## Current Scope
 

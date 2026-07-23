@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "description": "Copy this file to vision_benchmark_manifest.json, then replace each image_path and manual expected labels. The real manifest is ignored by Git.",
+  "cases": [
+    {
+      "id": "replace_with_private_daylight_water_scene",
+      "image_path": "private/replace_with_your_screenshot.png",
+      "expected": {
+        "scene_labels": ["daylight", "water"],
+        "hazards": ["water"],
+        "visible_blocks": ["water"]
+      }
+    }
+  ]
+}

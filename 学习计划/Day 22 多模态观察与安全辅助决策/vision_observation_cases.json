@@ -13,6 +13,11 @@
       "expected": {"accepted": true, "value": "The scene may contain water ahead, but the view is partially blocked."}
     },
     {
+      "id": "accept_pretty_printed_json",
+      "raw_output": "{\n  \"summary\": \"A tree is visible.\",\n  \"scene_labels\": [\"tree\"],\n  \"visible_blocks\": [\"oak_log\"],\n  \"visible_entities\": [],\n  \"hazards\": [],\n  \"confidence\": 0.9,\n  \"uncertainties\": []\n}",
+      "expected": {"accepted": true, "value": "A tree is visible."}
+    },
+    {
       "id": "reject_command_in_summary",
       "raw_output": "{\"summary\": \"!collectBlocks(\\\"oak_log\\\", 4)\", \"scene_labels\": [\"tree\"], \"visible_blocks\": [\"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}",
       "expected": {"accepted": false, "reason": "unsafe_summary"}
@@ -28,9 +33,19 @@
       "expected": {"accepted": false, "reason": "invalid_json"}
     },
     {
+      "id": "reject_json_followed_by_command",
+      "raw_output": "{\"summary\": \"A tree is visible.\", \"scene_labels\": [\"tree\"], \"visible_blocks\": [\"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}\n!collectBlocks(\"oak_log\", 4)",
+      "expected": {"accepted": false, "reason": "invalid_json"}
+    },
+    {
       "id": "reject_unknown_label",
       "raw_output": "{\"summary\": \"A tree is visible.\", \"scene_labels\": [\"build_house\"], \"visible_blocks\": [\"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}",
       "expected": {"accepted": false, "reason": "invalid_scene_labels"}
+    },
+    {
+      "id": "reject_duplicate_block_labels",
+      "raw_output": "{\"summary\": \"A tree is visible.\", \"scene_labels\": [\"tree\"], \"visible_blocks\": [\"oak_log\", \"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}",
+      "expected": {"accepted": false, "reason": "invalid_visible_blocks"}
     }
   ]
 }

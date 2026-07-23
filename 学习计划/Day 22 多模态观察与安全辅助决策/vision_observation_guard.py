@@ -54,6 +54,16 @@ def valid_identifiers(values, limit: int) -> bool:
         isinstance(values, list)
         and len(values) <= limit
         and all(isinstance(value, str) and IDENTIFIER.fullmatch(value) for value in values)
+        and len(values) == len(set(values))
+    )
+
+
+def valid_enum_list(values, allowed: set[str]) -> bool:
+    return (
+        isinstance(values, list)
+        and all(isinstance(value, str) for value in values)
+        and len(values) == len(set(values))
+        and set(values).issubset(allowed)
     )
 
 
@@ -62,8 +72,6 @@ def validate_vision_output(raw_output: str) -> ObservationResult:
     if not isinstance(raw_output, str) or not raw_output.strip():
         return reject("", "empty_output")
     candidate = raw_output.strip()
-    if "\n" in candidate:
-        return reject(candidate, "multiline_output")
     try:
         observation = json.loads(candidate)
     except json.JSONDecodeError:
@@ -76,13 +84,13 @@ def validate_vision_output(raw_output: str) -> ObservationResult:
     summary = observation["summary"]
     if not isinstance(summary, str) or not summary.strip() or len(summary) > 240 or "!" in summary or "\n" in summary:
         return reject(candidate, "unsafe_summary")
-    if not isinstance(observation["scene_labels"], list) or not set(observation["scene_labels"]).issubset(ALLOWED_SCENE_LABELS):
+    if not valid_enum_list(observation["scene_labels"], ALLOWED_SCENE_LABELS):
         return reject(candidate, "invalid_scene_labels")
     if not valid_identifiers(observation["visible_blocks"], 8):
         return reject(candidate, "invalid_visible_blocks")
     if not valid_identifiers(observation["visible_entities"], 8):
         return reject(candidate, "invalid_visible_entities")
-    if not isinstance(observation["hazards"], list) or not set(observation["hazards"]).issubset(ALLOWED_HAZARDS):
+    if not valid_enum_list(observation["hazards"], ALLOWED_HAZARDS):
         return reject(candidate, "invalid_hazards")
     confidence = observation["confidence"]
     if isinstance(confidence, bool) or not isinstance(confidence, (int, float)) or not 0 <= confidence <= 1:

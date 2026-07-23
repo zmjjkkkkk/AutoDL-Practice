@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "service": "mindcraft-vision-observation-gateway",
+  "binding": "127.0.0.1 only",
+  "endpoints": {
+    "GET /health": "Reports the local gateway and upstream vision-service availability.",
+    "POST /observe": {
+      "request": {
+        "image_base64": "Required base64-encoded PNG, JPEG, or WebP bytes. Data URLs are not accepted.",
+        "mime_type": "Required: image/png, image/jpeg, or image/webp."
+      },
+      "response": {
+        "ok": "Whether the Day 22 observation guard accepted the vision result.",
+        "reply": "A safe observation sentence or the fixed safe fallback.",
+        "observation": "The validated structured observation, or null when blocked.",
+        "image": "Input and in-memory resized dimensions only."
+      }
+    }
+  },
+  "safety_boundary": [
+    "The API accepts no player instruction, command text, remote image URL, or server-side file path.",
+    "Images are decoded, resized, and re-encoded in memory; uploads are never written to disk.",
+    "Only a Day 22 contract-compliant observation can leave the service.",
+    "The service does not call the Day 21 command gateway or Mindcraft."
+  ]
+}

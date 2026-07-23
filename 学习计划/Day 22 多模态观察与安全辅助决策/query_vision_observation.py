@@ -13,6 +13,7 @@ from pathlib import Path
 from PIL import Image, ImageOps
 
 from vision_observation_guard import validate_vision_output
+from vision_output_schema import RESPONSE_FORMAT
 
 
 SYSTEM_PROMPT = """You are a Minecraft visual observation component.
@@ -22,6 +23,8 @@ summary, scene_labels, visible_blocks, visible_entities, hazards, confidence, un
 Allowed scene_labels: daylight, night, tree, open_area, water, cave, inventory_screen, unknown.
 Allowed hazards: water, lava, fall, hostile_mob, unknown.
 visible_blocks and visible_entities must use lowercase underscore identifiers.
+List at most six unique visible blocks and at most four unique visible entities. Do not list tools, armor, or items.
+Use an empty list when uncertain, and stop immediately after closing the JSON object.
 confidence must be a number from 0 to 1. Use uncertainties for anything that is unclear.
 Do not use Markdown, code fences, explanations, or exclamation marks."""
 
@@ -67,6 +70,7 @@ def call_vllm(vllm_url: str, model: str, image_path: Path, max_image_side: int) 
         ],
         "temperature": 0,
         "max_tokens": 240,
+        "response_format": RESPONSE_FORMAT,
     }
     request = urllib.request.Request(
         vllm_url.rstrip("/") + "/chat/completions",
