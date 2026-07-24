@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "description": "Copy this file to vision_benchmark_manifest.json. Replace every private image_path and fill each expected list only with labels you can confidently see.",
+  "cases": [
+    {
+      "id": "daylight_open_near",
+      "image_path": "private/daylight_open_near.png",
+      "expected": {
+        "scene_labels": [],
+        "hazards": [],
+        "visible_blocks": [],
+        "visible_entities": []
+      }
+    },
+    {
+      "id": "daylight_open_far",
+      "image_path": "private/daylight_open_far.png",
+      "expected": {
+        "scene_labels": [],
+        "hazards": [],
+        "visible_blocks": [],
+        "visible_entities": []
+      }
+    },
+    {
+      "id": "night_or_low_light",
+      "image_path": "private/night_or_low_light.png",
+      "expected": {
+        "scene_labels": [],
+        "hazards": [],
+        "visible_blocks": [],
+        "visible_entities": []
+      }
+    },
+    {
+      "id": "indoor_dense",
+      "image_path": "private/indoor_dense.png",
+      "expected": {
+        "scene_labels": [],
+        "hazards": [],
+        "visible_blocks": [],
+        "visible_entities": []
+      }
+    },
+    {
+      "id": "water_or_height_hazard",
+      "image_path": "private/water_or_height_hazard.png",
+      "expected": {
+        "scene_labels": [],
+        "hazards": [],
+        "visible_blocks": [],
+        "visible_entities": []
+      }
+    },
+    {
+      "id": "entity_present",
+      "image_path": "private/entity_present.png",
+      "expected": {
+        "scene_labels": [],
+        "hazards": [],
+        "visible_blocks": [],
+        "visible_entities": []
+      }
+    }
+  ]
+}

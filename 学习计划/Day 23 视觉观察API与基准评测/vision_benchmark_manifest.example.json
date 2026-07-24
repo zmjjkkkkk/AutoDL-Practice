@@ -8,7 +8,8 @@
       "expected": {
         "scene_labels": ["daylight", "water"],
         "hazards": ["water"],
-        "visible_blocks": ["water"]
+        "visible_blocks": ["water"],
+        "visible_entities": []
       }
     }
   ]

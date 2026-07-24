@@ -22,17 +22,17 @@ OBSERVATION_JSON_SCHEMA = {
             "type": "array",
             "items": {
                 "type": "string",
-                "enum": ["daylight", "night", "tree", "open_area", "water", "cave", "inventory_screen", "unknown"],
+                "enum": ["daylight", "night", "tree", "open_area", "water", "cave", "desert", "inventory_screen", "unknown"],
             },
         },
         "visible_blocks": {
             "type": "array",
-            "maxItems": 8,
+            "maxItems": 6,
             "items": {"type": "string", "pattern": IDENTIFIER_PATTERN},
         },
         "visible_entities": {
             "type": "array",
-            "maxItems": 8,
+            "maxItems": 4,
             "items": {"type": "string", "pattern": IDENTIFIER_PATTERN},
         },
         "hazards": {

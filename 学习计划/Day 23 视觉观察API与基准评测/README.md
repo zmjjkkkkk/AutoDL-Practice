@@ -43,7 +43,7 @@ Day 23 同时复用 Day 22 的 `vision_output_schema.py`。当前 vLLM 部署使
 
 视觉守卫的 `ok: true` 只代表结构和安全边界合格，不能证明每个视觉标签都事实正确。基准评测要求人工先标注一组私有图片的“必须出现”标签，再计算模型命中的比例。指标称为**必需标签覆盖率**：已命中的人工标签数除以人工标签总数；它不把模型额外描述的细节直接计为错误。
 
-先复制模板为私有清单，并替换图片路径和人工标注：
+先复制模板为私有清单，并替换图片路径和人工标注。为了与模型输出上限一致，单张图最多标注 6 个必需方块和 4 个必需实体：
 
 ```powershell
 Copy-Item vision_benchmark_manifest.example.json vision_benchmark_manifest.json
@@ -57,7 +57,7 @@ python run_vision_benchmark.py \
   --gateway-url http://127.0.0.1:18768
 ```
 
-输出报告默认位于 `reports/vision_benchmark_report.json`，其中不包含 base64 图片数据。离线检查：
+输出报告默认位于 `reports/vision_benchmark_report.json`，其中不包含 base64 图片数据或模型原始文本；为便于私有复盘，它只保留观察守卫已接受的结构化 `observation`。离线检查：
 
 ```powershell
 python test_vision_benchmark.py
@@ -100,6 +100,8 @@ curl http://127.0.0.1:8768/health
 ```
 
 本地访问必须经过 SSH 隧道，例如将远端 `8768` 映射到本地 `18768`。截图、base64 请求体、报告和服务日志不应提交 Git。
+
+若某张图被观察守卫拒绝，需要定位契约不兼容原因时，可暂时添加 `--debug-rejected-output` 重启网关。该开关只把最长 600 个字符的、经 Python 转义的模型输出打印到**远端当前终端**；它不会写入 HTTP 响应、报告或仓库。完成排查后，应不带该参数重启网关。
 
 ## 离线测试
 

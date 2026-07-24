@@ -17,6 +17,9 @@ day19-*-upload.zip
 学习计划/Day 22 多模态观察与安全辅助决策/reports/
 学习计划/Day 23 视觉观察API与基准评测/reports/
 学习计划/Day 23 视觉观察API与基准评测/vision_benchmark_manifest.json
+学习计划/Day 24 多场景视觉基准与漏检分析/reports/
+学习计划/Day 24 多场景视觉基准与漏检分析/vision_benchmark_manifest.json
+学习计划/Day 24 多场景视觉基准与漏检分析/vision_case_metadata.json
 *.pdf
 
 # Secrets and machine-specific configuration

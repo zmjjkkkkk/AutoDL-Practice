@@ -26,6 +26,7 @@ ALLOWED_SCENE_LABELS = {
     "open_area",
     "water",
     "cave",
+    "desert",
     "inventory_screen",
     "unknown",
 }
@@ -86,9 +87,9 @@ def validate_vision_output(raw_output: str) -> ObservationResult:
         return reject(candidate, "unsafe_summary")
     if not valid_enum_list(observation["scene_labels"], ALLOWED_SCENE_LABELS):
         return reject(candidate, "invalid_scene_labels")
-    if not valid_identifiers(observation["visible_blocks"], 8):
+    if not valid_identifiers(observation["visible_blocks"], 6):
         return reject(candidate, "invalid_visible_blocks")
-    if not valid_identifiers(observation["visible_entities"], 8):
+    if not valid_identifiers(observation["visible_entities"], 4):
         return reject(candidate, "invalid_visible_entities")
     if not valid_enum_list(observation["hazards"], ALLOWED_HAZARDS):
         return reject(candidate, "invalid_hazards")

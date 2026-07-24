@@ -16,9 +16,9 @@
       "uncertainties"
     ],
     "summary": "One plain-text sentence, 240 characters or fewer, with no command marker.",
-    "scene_labels": ["daylight", "night", "tree", "open_area", "water", "cave", "inventory_screen", "unknown"],
-    "visible_blocks": "Up to eight Minecraft-style block identifiers.",
-    "visible_entities": "Up to eight Minecraft-style entity identifiers.",
+    "scene_labels": ["daylight", "night", "tree", "open_area", "water", "cave", "desert", "inventory_screen", "unknown"],
+    "visible_blocks": "Up to six Minecraft-style block identifiers.",
+    "visible_entities": "Up to four Minecraft-style entity identifiers.",
     "hazards": ["water", "lava", "fall", "hostile_mob", "unknown"],
     "confidence": "Number from 0.0 to 1.0.",
     "uncertainties": "Up to four short plain-text uncertainty notes."

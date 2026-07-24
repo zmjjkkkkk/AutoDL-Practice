@@ -29,7 +29,7 @@ SYSTEM_PROMPT = """You are a Minecraft visual observation component.
 Describe only what is visible in the supplied image. Never suggest, emit, or execute a game command.
 Return exactly one compact JSON object on one line, with exactly these keys:
 summary, scene_labels, visible_blocks, visible_entities, hazards, confidence, uncertainties.
-Allowed scene_labels: daylight, night, tree, open_area, water, cave, inventory_screen, unknown.
+Allowed scene_labels: daylight, night, tree, open_area, water, cave, desert, inventory_screen, unknown.
 Allowed hazards: water, lava, fall, hostile_mob, unknown.
 visible_blocks and visible_entities must use lowercase underscore identifiers.
 List at most six unique visible blocks and at most four unique visible entities. Do not list tools, armor, or items.
@@ -148,6 +148,7 @@ class VisionClient:
 class GatewayHandler(BaseHTTPRequestHandler):
     client: VisionClient | None = None
     max_image_side: int = DEFAULT_MAX_IMAGE_SIDE
+    debug_rejected_output: bool = False
 
     def _send_json(self, status: HTTPStatus, payload: dict):
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
@@ -195,6 +196,12 @@ class GatewayHandler(BaseHTTPRequestHandler):
             return
 
         guard = validate_vision_output(raw_output)
+        if not guard.accepted and self.debug_rejected_output:
+            # This is opt-in, terminal-only diagnostics. It never reaches the API response.
+            print(
+                "Vision observation rejected "
+                f"[{guard.reason}]: {raw_output[:600]!r}"
+            )
         self._send_json(
             HTTPStatus.OK,
             {
@@ -218,6 +225,11 @@ def parse_args():
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8768)
     parser.add_argument("--max-image-side", type=int, default=DEFAULT_MAX_IMAGE_SIDE)
+    parser.add_argument(
+        "--debug-rejected-output",
+        action="store_true",
+        help="Print a truncated, escaped rejected model response to this remote terminal only.",
+    )
     return parser.parse_args()
 
 
@@ -229,6 +241,7 @@ def main():
         raise ValueError("--max-image-side must be at least 256 pixels")
     GatewayHandler.client = VisionClient(args.vllm_url, args.model, args.timeout)
     GatewayHandler.max_image_side = args.max_image_side
+    GatewayHandler.debug_rejected_output = args.debug_rejected_output
     server = ThreadingHTTPServer((args.host, args.port), GatewayHandler)
     print(f"Day 23 vision observation gateway ready at http://{args.host}:{args.port}")
     print(f"Upstream vLLM: {args.vllm_url} | model: {args.model}")

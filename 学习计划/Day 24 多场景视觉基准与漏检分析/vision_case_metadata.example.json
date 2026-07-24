@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "description": "Copy this file to vision_case_metadata.json. Keep it private when it describes personal screenshots.",
+  "cases": [
+    {
+      "id": "daylight_open_near",
+      "tags": ["daylight", "outdoor", "near", "sparse"]
+    },
+    {
+      "id": "daylight_open_far",
+      "tags": ["daylight", "outdoor", "far", "sparse"]
+    },
+    {
+      "id": "night_or_low_light",
+      "tags": ["low_light", "outdoor"]
+    },
+    {
+      "id": "indoor_dense",
+      "tags": ["indoor", "dense"]
+    },
+    {
+      "id": "water_or_height_hazard",
+      "tags": ["hazard", "outdoor"]
+    },
+    {
+      "id": "entity_present",
+      "tags": ["entity", "outdoor"]
+    }
+  ]
+}

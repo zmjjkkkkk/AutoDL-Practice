@@ -11,7 +11,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-LABEL_FIELDS = ("scene_labels", "hazards", "visible_blocks")
+LABEL_FIELDS = ("scene_labels", "hazards", "visible_blocks", "visible_entities")
+EXPECTED_LABEL_LIMITS = {"visible_blocks": 6, "visible_entities": 4}
 
 
 def load_manifest(path: Path) -> list[dict]:
@@ -37,8 +38,14 @@ def load_manifest(path: Path) -> list[dict]:
         if not isinstance(expected, dict) or set(expected) != set(LABEL_FIELDS):
             raise ValueError(f"{case_id}: expected must contain exactly {LABEL_FIELDS}")
         for field in LABEL_FIELDS:
-            if not isinstance(expected[field], list) or not all(isinstance(item, str) for item in expected[field]):
+            values = expected[field]
+            if not isinstance(values, list) or not all(isinstance(item, str) and item for item in values):
                 raise ValueError(f"{case_id}: expected.{field} must be a list of strings")
+            if len(values) != len(set(values)):
+                raise ValueError(f"{case_id}: expected.{field} must not contain duplicates")
+            limit = EXPECTED_LABEL_LIMITS.get(field)
+            if limit is not None and len(values) > limit:
+                raise ValueError(f"{case_id}: expected.{field} may contain at most {limit} labels")
     return cases
 
 
@@ -109,6 +116,9 @@ def run_case(case: dict, manifest_dir: Path, gateway_url: str, timeout: int) -> 
             "ok": response.get("ok") is True,
             "reason": response.get("reason"),
             "reply": response.get("reply"),
+            # The report is private and Git-ignored. Keep only the guard-accepted
+            # observation, never the model's raw response or image bytes.
+            "observation": observation,
             "coverage": label_coverage(case["expected"], observation),
         }
     )

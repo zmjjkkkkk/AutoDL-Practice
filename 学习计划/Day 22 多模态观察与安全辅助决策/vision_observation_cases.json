@@ -18,6 +18,11 @@
       "expected": {"accepted": true, "value": "A tree is visible."}
     },
     {
+      "id": "accept_desert_scene",
+      "raw_output": "{\"summary\": \"A desert area is visible.\", \"scene_labels\": [\"daylight\", \"desert\"], \"visible_blocks\": [\"sand\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}",
+      "expected": {"accepted": true, "value": "A desert area is visible."}
+    },
+    {
       "id": "reject_command_in_summary",
       "raw_output": "{\"summary\": \"!collectBlocks(\\\"oak_log\\\", 4)\", \"scene_labels\": [\"tree\"], \"visible_blocks\": [\"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}",
       "expected": {"accepted": false, "reason": "unsafe_summary"}
@@ -45,6 +50,11 @@
     {
       "id": "reject_duplicate_block_labels",
       "raw_output": "{\"summary\": \"A tree is visible.\", \"scene_labels\": [\"tree\"], \"visible_blocks\": [\"oak_log\", \"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}",
+      "expected": {"accepted": false, "reason": "invalid_visible_blocks"}
+    },
+    {
+      "id": "reject_too_many_block_labels",
+      "raw_output": "{\"summary\": \"Several blocks are visible.\", \"scene_labels\": [\"open_area\"], \"visible_blocks\": [\"stone\", \"dirt\", \"sand\", \"grass_block\", \"water\", \"cactus\", \"oak_log\"], \"visible_entities\": [], \"hazards\": [], \"confidence\": 0.9, \"uncertainties\": []}",
       "expected": {"accepted": false, "reason": "invalid_visible_blocks"}
     }
   ]
