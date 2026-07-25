@@ -98,6 +98,36 @@ def label_coverage(expected: dict, observation: dict | None) -> dict:
     return scores
 
 
+def image_metadata(response: dict) -> dict | None:
+    """Keep only non-sensitive scaling metadata for reproducible A/B comparisons."""
+    image = response.get("image")
+    if not isinstance(image, dict):
+        return None
+    original_size = image.get("original_size")
+    sent_size = image.get("sent_size")
+    max_image_side = image.get("max_image_side")
+    transformation = image.get("transformation")
+    if (
+        not isinstance(original_size, dict)
+        or not isinstance(sent_size, dict)
+        or not all(
+            isinstance(size.get(axis), int) and size[axis] > 0
+            for size in (original_size, sent_size)
+            for axis in ("width", "height")
+        )
+        or not isinstance(max_image_side, int)
+        or max_image_side <= 0
+        or not isinstance(transformation, str)
+    ):
+        return None
+    return {
+        "original_size": {"width": original_size["width"], "height": original_size["height"]},
+        "sent_size": {"width": sent_size["width"], "height": sent_size["height"]},
+        "max_image_side": max_image_side,
+        "transformation": transformation,
+    }
+
+
 def run_case(case: dict, manifest_dir: Path, gateway_url: str, timeout: int) -> dict:
     image_path = manifest_dir / case["image_path"]
     result = {"id": case["id"]}
@@ -119,6 +149,7 @@ def run_case(case: dict, manifest_dir: Path, gateway_url: str, timeout: int) -> 
             # The report is private and Git-ignored. Keep only the guard-accepted
             # observation, never the model's raw response or image bytes.
             "observation": observation,
+            "image": image_metadata(response),
             "coverage": label_coverage(case["expected"], observation),
         }
     )

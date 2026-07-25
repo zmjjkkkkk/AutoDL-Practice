@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from run_vision_benchmark import label_coverage, load_manifest, summarize
+from run_vision_benchmark import image_metadata, label_coverage, load_manifest, summarize
 
 
 def main():
@@ -33,6 +33,24 @@ def main():
     assert summary["accepted_rate"] == 0.5
     assert summary["mean_required_label_coverage"] == 5 / 6
 
+    metadata = image_metadata(
+        {
+            "image": {
+                "original_size": {"width": 2560, "height": 1494},
+                "sent_size": {"width": 1280, "height": 747},
+                "max_image_side": 1280,
+                "transformation": "in_memory_downscale_to_jpeg",
+            }
+        }
+    )
+    assert metadata == {
+        "original_size": {"width": 2560, "height": 1494},
+        "sent_size": {"width": 1280, "height": 747},
+        "max_image_side": 1280,
+        "transformation": "in_memory_downscale_to_jpeg",
+    }
+    assert image_metadata({"image": {"sent_size": {}}}) is None
+
     base_case = {
         "id": "one",
         "image_path": "private/one.png",
@@ -59,7 +77,7 @@ def main():
             assert "at most 6 labels" in str(exc)
         else:
             raise AssertionError("expected an over-limit visible_blocks validation error")
-    print("Day 23 vision benchmark tests passed: 2/2")
+    print("Day 23 vision benchmark tests passed: 3/3")
 
 
 if __name__ == "__main__":

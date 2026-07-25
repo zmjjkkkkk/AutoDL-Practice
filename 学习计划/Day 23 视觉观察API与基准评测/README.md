@@ -70,11 +70,12 @@ python test_vision_benchmark.py
 ```json
 {
   "image_base64": "base64 encoded PNG/JPEG/WebP bytes",
-  "mime_type": "image/png"
+  "mime_type": "image/png",
+  "focus": "overview"
 }
 ```
 
-图片只能是 PNG、JPEG 或 WebP；不接受 URL、远端文件路径、额外字段或玩家提示词。原始图片最大 8 MiB、图片像素最大 1600 万，服务在内存中压缩为最长边默认 768 像素的 JPEG，之后立即丢弃上传字节。
+`focus` 可省略，默认值为 `overview`；其余允许值是 `blocks`、`entities` 和 `hazards`。它是服务器预先定义的观察侧重点，不是玩家提示词。图片只能是 PNG、JPEG 或 WebP；不接受 URL、远端文件路径、额外字段或玩家提示词。原始图片最大 8 MiB、图片像素最大 1600 万，服务在内存中压缩为最长边默认 768 像素的 JPEG，之后立即丢弃上传字节。
 
 成功响应中不会回传模型原始文本，只返回守卫已接受的 `observation`；异常视觉输出会返回固定安全提示。该设计避免未经验证的模型内容继续流向客户端。
 

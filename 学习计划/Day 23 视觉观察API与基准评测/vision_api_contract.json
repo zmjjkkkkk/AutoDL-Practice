@@ -7,18 +7,20 @@
     "POST /observe": {
       "request": {
         "image_base64": "Required base64-encoded PNG, JPEG, or WebP bytes. Data URLs are not accepted.",
-        "mime_type": "Required: image/png, image/jpeg, or image/webp."
+        "mime_type": "Required: image/png, image/jpeg, or image/webp.",
+        "focus": "Optional fixed enum: overview, blocks, entities, or hazards. Defaults to overview; free-form instructions are rejected."
       },
       "response": {
         "ok": "Whether the Day 22 observation guard accepted the vision result.",
         "reply": "A safe observation sentence or the fixed safe fallback.",
         "observation": "The validated structured observation, or null when blocked.",
+        "focus": "The accepted server-defined observation focus.",
         "image": "Input and in-memory resized dimensions only."
       }
     }
   },
   "safety_boundary": [
-    "The API accepts no player instruction, command text, remote image URL, or server-side file path.",
+    "The API accepts no player instruction, command text, remote image URL, or server-side file path; focus is a fixed enum, not a prompt.",
     "Images are decoded, resized, and re-encoded in memory; uploads are never written to disk.",
     "Only a Day 22 contract-compliant observation can leave the service.",
     "The service does not call the Day 21 command gateway or Mindcraft."

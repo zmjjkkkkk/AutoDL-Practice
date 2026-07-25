@@ -12,7 +12,11 @@ DAY23_DIR = Path(__file__).resolve().parent
 DAY22_DIR = DAY23_DIR.parent / "Day 22 多模态观察与安全辅助决策"
 sys.path.insert(0, str(DAY22_DIR))
 
-from vision_observation_gateway import parse_image_payload
+from vision_observation_gateway import (
+    parse_image_payload,
+    parse_observation_payload,
+    system_prompt_for,
+)
 
 
 def make_png_base64() -> str:
@@ -22,9 +26,9 @@ def make_png_base64() -> str:
     return base64.b64encode(buffer.getvalue()).decode("ascii")
 
 
-def expect_value_error(payload: dict, expected: str):
+def expect_value_error(payload: dict, expected: str, parser=parse_image_payload):
     try:
-        parse_image_payload(payload, 768)
+        parser(payload, 768)
     except ValueError as exc:
         assert expected in str(exc), (str(exc), expected)
         return
@@ -43,7 +47,19 @@ def main():
     expect_value_error({"image_base64": "not base64", "mime_type": "image/png"}, "invalid_base64")
     expect_value_error({"image_base64": make_png_base64(), "mime_type": "image/gif"}, "unsupported_mime_type")
     expect_value_error({"image_base64": make_png_base64(), "mime_type": "image/png", "prompt": "move"}, "exactly")
-    print("Day 23 vision observation gateway tests passed: 4/4")
+
+    _, _, focus = parse_observation_payload(
+        {"image_base64": make_png_base64(), "mime_type": "image/png", "focus": "entities"},
+        768,
+    )
+    assert focus == "entities"
+    assert "Never use generic labels" in system_prompt_for("entities")
+    expect_value_error(
+        {"image_base64": make_png_base64(), "mime_type": "image/png", "focus": "describe_everything"},
+        "unsupported_focus",
+        parse_observation_payload,
+    )
+    print("Day 23 vision observation gateway tests passed: 7/7")
 
 
 if __name__ == "__main__":

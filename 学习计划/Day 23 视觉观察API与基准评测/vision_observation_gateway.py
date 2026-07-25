@@ -25,8 +25,33 @@ from vision_observation_guard import SAFE_FALLBACK, validate_vision_output
 from vision_output_schema import RESPONSE_FORMAT
 
 
-SYSTEM_PROMPT = """You are a Minecraft visual observation component.
+OBSERVATION_FOCUSES = ("overview", "blocks", "entities", "hazards")
+
+FOCUS_INSTRUCTIONS = {
+    "overview": "Give a concise overview of the full scene.",
+    "blocks": (
+        "Prioritize specific, clearly visible Minecraft blocks. Do not guess a block variant, "
+        "and do not replace an uncertain block with a generic material word."
+    ),
+    "entities": (
+        "Prioritize clearly visible Minecraft entities. Use a specific Minecraft entity identifier "
+        "only when confident; otherwise use an empty visible_entities list. Never use generic labels "
+        "such as character, creature, animal, or mob."
+    ),
+    "hazards": (
+        "Prioritize immediate visible hazards. Label water, lava, fall, or hostile_mob only when "
+        "directly visible; otherwise use an empty hazards list."
+    ),
+}
+
+
+def system_prompt_for(focus: str) -> str:
+    """Build a fixed prompt from a server-controlled observation profile."""
+    if focus not in FOCUS_INSTRUCTIONS:
+        raise ValueError("unsupported_focus")
+    return f"""You are a Minecraft visual observation component.
 Describe only what is visible in the supplied image. Never suggest, emit, or execute a game command.
+{FOCUS_INSTRUCTIONS[focus]}
 Return exactly one compact JSON object on one line, with exactly these keys:
 summary, scene_labels, visible_blocks, visible_entities, hazards, confidence, uncertainties.
 Allowed scene_labels: daylight, night, tree, open_area, water, cave, desert, inventory_screen, unknown.
@@ -87,6 +112,22 @@ def parse_image_payload(payload: dict, max_image_side: int) -> tuple[str, dict]:
     return f"data:image/jpeg;base64,{result}", metadata
 
 
+def parse_observation_payload(payload: dict, max_image_side: int) -> tuple[str, dict, str]:
+    """Accept an image plus one server-defined focus, never a free-form instruction."""
+    if not isinstance(payload, dict) or not {"image_base64", "mime_type"}.issubset(payload):
+        raise ValueError("request must contain image_base64 and mime_type")
+    if set(payload) - {"image_base64", "mime_type", "focus"}:
+        raise ValueError("request contains unsupported fields")
+    focus = payload.get("focus", "overview")
+    if not isinstance(focus, str) or focus not in OBSERVATION_FOCUSES:
+        raise ValueError("unsupported_focus")
+    data_url, metadata = parse_image_payload(
+        {"image_base64": payload["image_base64"], "mime_type": payload["mime_type"]},
+        max_image_side,
+    )
+    return data_url, metadata, focus
+
+
 class VisionClient:
     def __init__(self, base_url: str, model: str, timeout: int):
         self.base_url = base_url.rstrip("/")
@@ -94,11 +135,11 @@ class VisionClient:
         self.timeout = timeout
         self.api_key = os.getenv("VLLM_API_KEY")
 
-    def observe(self, data_url: str) -> str:
+    def observe(self, data_url: str, focus: str) -> str:
         payload = {
             "model": self.model,
             "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": system_prompt_for(focus)},
                 {
                     "role": "user",
                     "content": [
@@ -183,13 +224,13 @@ class GatewayHandler(BaseHTTPRequestHandler):
             payload = json.loads(self.rfile.read(content_length).decode("utf-8"))
             if not isinstance(payload, dict):
                 raise ValueError("request_must_be_an_object")
-            data_url, image_metadata = parse_image_payload(payload, self.max_image_side)
+            data_url, image_metadata, focus = parse_observation_payload(payload, self.max_image_side)
         except (UnicodeDecodeError, ValueError, json.JSONDecodeError) as exc:
             self._send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_request", "detail": str(exc)})
             return
 
         try:
-            raw_output = self.client.observe(data_url)
+            raw_output = self.client.observe(data_url, focus)
         except RuntimeError as exc:
             print(f"Vision upstream failure: {exc}")
             self._send_json(HTTPStatus.BAD_GATEWAY, {"error": "vision_service_unavailable"})
@@ -209,6 +250,7 @@ class GatewayHandler(BaseHTTPRequestHandler):
                 "reply": guard.value if guard.accepted else SAFE_FALLBACK,
                 "observation": guard.observation if guard.accepted else None,
                 "reason": guard.reason,
+                "focus": focus,
                 "image": image_metadata,
             },
         )

@@ -20,6 +20,7 @@ day19-*-upload.zip
 学习计划/Day 24 多场景视觉基准与漏检分析/reports/
 学习计划/Day 24 多场景视觉基准与漏检分析/vision_benchmark_manifest.json
 学习计划/Day 24 多场景视觉基准与漏检分析/vision_case_metadata.json
+学习计划/Day 25 视觉标签校准与双层评测/reports/
 *.pdf
 
 # Secrets and machine-specific configuration
