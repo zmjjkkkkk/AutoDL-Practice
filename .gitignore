@@ -1,5 +1,6 @@
 # Private screenshots and machine information
 其他截图/
+vision_lora/
 电脑配置.png
 *.png
 *.jpg
@@ -21,6 +22,8 @@ day19-*-upload.zip
 学习计划/Day 24 多场景视觉基准与漏检分析/vision_benchmark_manifest.json
 学习计划/Day 24 多场景视觉基准与漏检分析/vision_case_metadata.json
 学习计划/Day 25 视觉标签校准与双层评测/reports/
+学习计划/Day 26 Minecraft视觉LoRA实体分类/reports/
+学习计划/Day 26 Minecraft视觉LoRA实体分类/output/
 *.pdf
 
 # Secrets and machine-specific configuration
