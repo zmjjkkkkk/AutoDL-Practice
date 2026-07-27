@@ -75,6 +75,13 @@ checkpoints/
 *.bin
 *.onnx
 
+# Day 27 private external-evaluation manifests and generated reports
+**/external_test.jsonl
+**/external_summary.json
+**/external_base.json
+**/external_lora.json
+**/external_comparison.json
+
 # Node.js and Mindcraft runtime files
 node_modules/
 **/node_modules/
