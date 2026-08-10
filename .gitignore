@@ -82,6 +82,11 @@ checkpoints/
 **/external_lora.json
 **/external_comparison.json
 
+# Day 29 machine-specific reports and runtime state
+**/day29_runtime_report.json
+**/day29_regression_report.json
+**/runtime/
+
 # Node.js and Mindcraft runtime files
 node_modules/
 **/node_modules/
