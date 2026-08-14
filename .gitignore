@@ -7,10 +7,9 @@ vision_lora/
 *.jpeg
 *.webp
 
-# Original source material and personal documents
+# Original source material and local notes
 data/
-简历.txt
-简历项目描述.md
+describe.md
 record.txt
 学习计划/Day 19 交互轨迹自动记录与数据扩展/output/
 学习计划/Day 20 命令回归评测与安全边界测试/reports/
